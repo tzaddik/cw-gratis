@@ -1,13 +1,19 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Icon
-//
-// ========================================================================
+/*
+ * Icon component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @icon-button-height:                            @icon-button-width;
 @icon-button-font-size:                         round((@icon-button-width * 0.5));
@@ -17,20 +23,50 @@
 
 @icon-button-active-color:                      @global-color;
 
+@gratis_icon-button-border:                     #ccc;
+@gratis_icon-button-border-bottom:              #bbb;
+@gratis_icon-button-hover-border:               @gratis_primary-border;
+@gratis_icon-button-hover-color:                @global-link-hover-color;
 
-// Modifier: `uk-icon-button`
-// ========================================================================
+@gratis_icon-button-text-shadow:                @gratis_global-text-shadow;
+@gratis_icon-button-box-shadow:                 @gratis_global-box-shadow;
 
-.hook-icon-button() {}
+@gratis_icon-button-gradient-top:               @gratis_global-default-gradient-top;
+@gratis_icon-button-gradient-bottom:            @gratis_global-default-gradient-bottom;
 
-// Hover
-.hook-icon-button-hover() {}
+/* Modifier: `uk-icon-button`
+ ========================================================================== */
 
-// Active
-.hook-icon-button-active() {}
+.hook-icon-button() {
+    border: 1px solid @gratis_icon-button-border;
+    border-bottom-color: @gratis_icon-button-border-bottom;
+    background-origin: border-box;
+    background-image: -webkit-linear-gradient(top, @gratis_icon-button-gradient-top, @gratis_icon-button-gradient-bottom);
+    background-image: linear-gradient(to bottom, @gratis_icon-button-gradient-top, @gratis_icon-button-gradient-bottom);
+    text-shadow: 0 1px 0 @gratis_icon-button-text-shadow;
+}
+
+/*
+ * Hover state
+ */
+.hook-icon-button-hover() { 
+    border: 1px solid @gratis_icon-button-hover-border;
+    background-image: none;
+    color: @gratis_icon-button-hover-color;
+}
+
+/*
+ * Active state
+ */
+.hook-icon-button-active() {
+    border-color: @gratis_icon-button-border;
+    border-top-color: @gratis_icon-button-border-bottom;
+    background-image: none;
+    box-shadow: inset 0 2px 4px @gratis_icon-button-box-shadow;
+}
 
 
-// Miscellaneous
-// ========================================================================
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-icon-misc() {}

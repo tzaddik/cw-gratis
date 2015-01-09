@@ -1,17 +1,24 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Article
-//
-// ========================================================================
+/*
+ * Article component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @article-margin-top:                            @global-margin-large;
 
 @article-title-font-size:                       round((@global-font-size * 2.6)); // 36px / 42px
+@article-title-font-weight:                     300;
 @article-title-line-height:                     round((@article-title-font-size * 1.154)); // 42px / 48px
 
 @article-meta-font-size:                        round((@global-font-size * 0.85)); // 12px / 14px
@@ -21,36 +28,46 @@
 @article-lead-color:                            @global-color;
 @article-lead-font-size:                        round((@global-font-size * 1.28)); // 18px / 20px
 @article-lead-line-height:                      round((@article-lead-font-size * 1.32)); // 24px / 26px
+@gratis_article-lead-colour:                    @gratis-active-color;
 
 @article-divider-margin:                        @global-margin-large;
 @article-divider-border:                        @global-border;
 
 
-// Sub-object `uk-article-title`
-// ========================================================================
+/* Component
+ ========================================================================== */
+
+.uk-article + .uk-article {
+	padding-top: @article-margin-top;
+	border-top: 1px solid @article-divider-border;
+}
+
+
+/* Sub-object `uk-article-title`
+ ========================================================================== */
 
 .hook-article-title() {}
 
 
-// Sub-object `uk-article-meta`
-// ========================================================================
+/* Sub-object `uk-article-meta`
+ ========================================================================== */
 
 .hook-article-meta() {}
 
 
-// Sub-object `uk-article-lead`
-// ========================================================================
+/* Sub-object `uk-article-lead`
+ ========================================================================== */
 
-.hook-article-lead() {}
+.hook-article-lead() { color: @gratis_article-lead-colour; }
 
 
-// Sub-object `uk-article-divider`
-// ========================================================================
+/* Sub-object `uk-article-divider`
+ ========================================================================== */
 
 .hook-article-divider() {}
 
 
-// Miscellaneous
-// ========================================================================
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-article-misc() {}

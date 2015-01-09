@@ -1,13 +1,19 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Button
-//
-// ========================================================================
+/*
+ * Button component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @button-height:                                 @global-height;
 @button-mini-height:                            @global-height-mini;
@@ -19,28 +25,65 @@
 @button-small-line-height:                      @global-height-small;
 @button-large-line-height:                      @global-height-large;
 
-@button-mini-font-size:                         round((@global-font-size * 0.78)); // 11px / 12px
-@button-small-font-size:                        round((@global-font-size * 0.85)); // 12px / 14px
-@button-large-font-size:                        round((@global-font-size * 1.14)); // 16px / 18px
+@gratis_button-border:                          @global-border;
+@gratis_button-border-radius:                   @gratis_global-border-radius;
+
+@gratis_button-box-shadow:                      rgba(0,0,0,0.3);
+@gratis_button-text-shadow:                     @gratis_global-text-shadow;
+
+@gratis_button-transition:                      @gratis_global-transition;
+
+@gratis_button-dropdown-icon:                   @gratis_nav-parent-open-icon;
+
+@button-mini-font-size:                         round((@global-font-size * 0.78)); // 11px
+@button-small-font-size:                        round((@global-font-size * 0.85)); // 12px
+@button-large-font-size:                        round((@global-font-size * 1.14)); // 16px
 
 @button-color:                                  @global-color;
 @button-hover-color:                            @global-color;
 @button-active-color:                           @global-color;
 
+@gratis_button-gradient-top:			@gratis_global-default-gradient-top;
+@gratis_button-gradient-bottom:			@gratis_global-default-gradient-bottom;
+
 @button-primary-background:                     @global-primary-background;
 @button-primary-color:                          @global-contrast-color;
 @button-primary-hover-color:                    @global-contrast-color;
 @button-primary-active-color:                   @global-contrast-color;
+@gratis_button-primary-gradient-top:            @gratis_primary-gradient-top;
+@gratis_button-primary-gradient-bottom:         @gratis_primary-gradient-bottom;
 
 @button-success-background:                     @global-success-background;
 @button-success-color:                          @global-contrast-color;
 @button-success-hover-color:                    @global-contrast-color;
 @button-success-active-color:                   @global-contrast-color;
+@gratis_button-success-gradient-top:            @gratis_global-success-gradient-top;
+@gratis_button-success-gradient-bottom:         @gratis_global-success-gradient-bottom;
 
 @button-danger-background:                      @global-danger-background;
 @button-danger-color:                           @global-contrast-color;
 @button-danger-hover-color:                     @global-contrast-color;
 @button-danger-active-color:                    @global-contrast-color;
+@gratis_button-danger-gradient-top:             @gratis_global-danger-gradient-top;
+@gratis_button-danger-gradient-bottom:          @gratis_global-danger-gradient-bottom;
+
+@gratis_button-blue-gradient-top:               @gratis_gradient-top-blue;
+@gratis_button-blue-gradient-bottom:            @gratis_gradient-bottom-blue;
+
+@gratis_button-green-gradient-top:              @gratis_gradient-top-green;
+@gratis_button-green-gradient-bottom:           @gratis_gradient-bottom-green;
+
+@gratis_button-orange-gradient-top:             @gratis_gradient-top-orange;
+@gratis_button-orange-gradient-bottom:          @gratis_gradient-bottom-orange;
+
+@gratis_button-pink-gradient-top:               @gratis_gradient-top-pink;
+@gratis_button-pink-gradient-bottom:            @gratis_gradient-bottom-pink;
+
+@gratis_button-red-gradient-top:                @gratis_gradient-top-red;
+@gratis_button-red-gradient-bottom:             @gratis_gradient-bottom-red;
+
+@gratis_button-teal-gradient-top:               @gratis_gradient-top-teal;
+@gratis_button-teal-gradient-bottom:            @gratis_gradient-bottom-teal;
 
 @button-disabled-color:                         @global-muted-color;
 
@@ -48,67 +91,338 @@
 @button-link-hover-color:                       @global-link-hover-color;
 @button-link-disabled-color:                    @global-muted-color;
 
-
-// Component
+// Button Presets
 // ========================================================================
 
-.hook-button() {}
+.button-style {
+    display: inline-block;
+    padding: 0 12px;
+    border: 1px solid @gratis_button-border;
+    background-origin: border-box;
+    border-radius: @gratis_button-border-radius;
+    line-height: @button-line-height;
+    min-height: @button-height;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 @gratis_button-text-shadow;
+    color: @button-primary-color;
+}
 
-.hook-button-hover() {}
+.button-style-hover {
+    color: @button-primary-color;
+    transition: @gratis_button-transition;
+    box-shadow: inset 0 0 10px 2px @gratis_button-box-shadow;
+    cursor:pointer;
+}
 
-.hook-button-active() {}
+.button-style-active {
+    box-shadow: inset 0 0 10px 2px @gratis_button-box-shadow;
+    color: @button-primary-color;
+    cursor:pointer;
+}
+
+/* Component
+ ========================================================================== */
+
+.hook-button() {  
+    background-image: -webkit-linear-gradient(top, @gratis_button-gradient-top, @gratis_button-gradient-bottom);
+    background-image: linear-gradient(to bottom, @gratis_button-gradient-top, @gratis_button-gradient-bottom);
+    background-color: @gratis_button-gradient-top;
+    .button-style;
+    color: @button-color;
+}
+
+.hook-button-hover() { 
+    background: @gratis_button-gradient-bottom;
+    .button-style-hover;
+    color: @button-hover-color;
+}
+
+.hook-button-active() {
+    background: @gratis_button-gradient-bottom;
+    .button-style-active;
+    color: @button-active-color;
+}
+
+/* Color modifiers
+ ========================================================================== */
+
+/*
+ * Modifier: `uk-button-primary`
+ */
+
+.hook-button-primary() {
+    background-image: -webkit-linear-gradient(top, @gratis_button-primary-gradient-top, @gratis_button-primary-gradient-bottom);
+    background-image: linear-gradient(@gratis_button-primary-gradient-top, @gratis_button-primary-gradient-bottom);
+    background-color: @gratis_button-primary-gradient-top;
+    .button-style;
+}
+
+.hook-button-primary-hover() { 
+    background: @gratis_button-primary-gradient-bottom; 
+    .button-style-hover;
+}
+
+.hook-button-primary-active() {
+    background: @gratis_button-primary-gradient-bottom;
+    .button-style-active;
+}
+
+/*
+ * Modifier: `uk-button-success`
+ */
+
+.hook-button-success() {
+    background-image: -webkit-linear-gradient(top, @gratis_button-success-gradient-top, @gratis_button-success-gradient-bottom);
+    background-image: linear-gradient(to bottom, @gratis_button-success-gradient-top, @gratis_button-success-gradient-bottom);
+    background-color: @gratis_button-success-gradient-top;
+    .button-style;
+}
+
+.hook-button-success-hover() {
+    background: @gratis_button-success-gradient-bottom;
+    .button-style-hover;
+}
+.hook-button-success-active() {
+    background: @gratis_button-success-gradient-bottom;
+    .button-style-active; 
+}
+
+/*
+ * Modifier: `uk-button-danger`
+ */
+
+.hook-button-danger() {
+    background-image: -webkit-linear-gradient(top, @gratis_button-danger-gradient-top, @gratis_button-danger-gradient-bottom);
+    background-image: linear-gradient(to bottom, @gratis_button-danger-gradient-top, @gratis_button-danger-gradient-bottom);
+    background-color: @gratis_button-danger-gradient-top;
+    .button-style;
+}
+
+.hook-button-danger-hover() {
+    background: @gratis_button-danger-gradient-bottom;
+    .button-style-hover;
+}
+.hook-button-danger-active() { 
+    background: @gratis_button-danger-gradient-bottom;
+    .button-style-active; 
+}
+
+/*
+ * Modifier: `button-blue`
+ */
+
+.button-blue {
+	background-image: -webkit-linear-gradient(top, @gratis_button-blue-gradient-top, @gratis_button-blue-gradient-bottom);
+	background-image: linear-gradient(@gratis_button-blue-gradient-top, @gratis_button-blue-gradient-bottom);
+        background-color: @gratis_button-blue-gradient-top;
+        .button-style;
+        
+        &:hover, &:focus {
+            background: @gratis_button-blue-gradient-bottom; 
+            .button-style-hover;
+        }
+        
+        &:active {
+            background: @gratis_button-blue-gradient-bottom;
+            .button-style-active;
+        }
+}
 
 
-// Color modifiers
-// ========================================================================
+/*
+ * Modifier: `button-green`
+ */
 
-//
-// Modifier: `uk-button-primary`
-//
-
-.hook-button-primary() {}
-
-.hook-button-primary-hover() {}
-.hook-button-primary-active() {}
-
-//
-// Modifier: `uk-button-success`
-//
-
-.hook-button-success() {}
-
-.hook-button-success-hover() {}
-.hook-button-success-active() {}
-
-//
-// Modifier: `uk-button-danger`
-//
-
-.hook-button-danger() {}
-
-.hook-button-danger-hover() {}
-.hook-button-danger-active() {}
+.button-green {
+	background-image: -webkit-linear-gradient(top, @gratis_button-green-gradient-top, @gratis_button-green-gradient-bottom);
+	background-image: linear-gradient(@gratis_button-green-gradient-top, @gratis_button-green-gradient-bottom);
+        background-color: @gratis_button-green-gradient-top;
+        .button-style;
+        
+        &:hover, &:focus {
+            background: @gratis_button-green-gradient-bottom; 
+            .button-style-hover;
+        }
+        
+        &:active {
+            background: @gratis_button-green-gradient-bottom;
+            .button-style-active;
+        }
+}
 
 
-// Disabled state
-// ========================================================================
+/*
+ * Modifier: `button-orange`
+ */
 
-.hook-button-disable() {}
+.button-orange {
+	background-image: -webkit-linear-gradient(top, @gratis_button-orange-gradient-top, @gratis_button-orange-gradient-bottom);
+	background-image: linear-gradient(@gratis_button-orange-gradient-top, @gratis_button-orange-gradient-bottom);
+        background-color: @gratis_button-orange-gradient-top;
+        .button-style;
+        
+        &:hover, &:focus {
+            background: @gratis_button-orange-gradient-bottom; 
+            .button-style-hover;
+        }
+        
+        &:active {
+            background: @gratis_button-orange-gradient-bottom;
+            .button-style-active;
+        }
+}
 
 
-// Modifier: `uk-button-link`
-// ========================================================================
+/*
+ * Modifier: `button-pink`
+ */
 
-.hook-button-link() {}
+.button-pink {
+	background-image: -webkit-linear-gradient(top, @gratis_button-pink-gradient-top, @gratis_button-pink-gradient-bottom);
+	background-image: linear-gradient(@gratis_button-pink-gradient-top, @gratis_button-pink-gradient-bottom);
+        background-color: @gratis_button-pink-gradient-top;
+        .button-style;
+        
+        &:hover, &:focus {
+            background: @gratis_button-pink-gradient-bottom; 
+            .button-style-hover;
+        }
+        
+        &:active {
+            background: @gratis_button-pink-gradient-bottom;
+            .button-style-active;
+        }
+}
 
 
-// Size modifiers
-// ========================================================================
+/*
+ * Modifier: `button-red`
+ */
+
+.button-red {
+	background-image: -webkit-linear-gradient(top, @gratis_button-red-gradient-top, @gratis_button-red-gradient-bottom);
+	background-image: linear-gradient(@gratis_button-red-gradient-top, @gratis_button-red-gradient-bottom);
+        background-color: @gratis_button-red-gradient-top;
+        .button-style;
+        
+        &:hover, &:focus {
+            background: @gratis_button-red-gradient-bottom; 
+            .button-style-hover;
+        }
+        
+        &:active {
+            background: @gratis_button-red-gradient-bottom;
+            .button-style-active;
+        }
+}
+
+
+/*
+ * Modifier: `button-teal`
+ */
+
+.button-teal {
+	background-image: -webkit-linear-gradient(top, @gratis_button-teal-gradient-top, @gratis_button-teal-gradient-bottom);
+	background-image: linear-gradient(@gratis_button-teal-gradient-top, @gratis_button-teal-gradient-bottom);
+        background-color: @gratis_button-teal-gradient-top;
+        .button-style;
+        
+        &:hover, &:focus {
+            background: @gratis_button-teal-gradient-bottom; 
+            .button-style-hover;
+        }
+        
+        &:active {
+            background: @gratis_button-teal-gradient-bottom;
+            .button-style-active;
+        }
+}
+
+
+/* Disabled state
+ ========================================================================== */
+
+.hook-button-disable() {
+    background-image: none;
+    text-decoration: none;
+    cursor: default;
+    .button-style;
+    color: @button-disabled-color;
+    
+    &:hover{ box-shadow: none; }
+}
+
+
+/* Modifier: `uk-button-link`
+ ========================================================================== */
+
+.hook-button-link() {	
+    box-shadow: none;
+    text-shadow: none;
+}
+
+
+/* Size modifiers
+ ========================================================================== */
 
 .hook-button-large() {}
 
 
-// Miscellaneous
-// ========================================================================
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-button-misc() {}
+
+/* Sub-object `uk-button-group`
+ ========================================================================== */
+
+/*
+ * Reset border-radius
+ */
+
+.uk-button-group > .uk-button:not(:first-child):not(:last-child),
+.uk-button-group > div:not(:first-child):not(:last-child) .uk-button { border-radius: 0; }
+
+.uk-button-group > .uk-button:first-child,
+.uk-button-group > div:first-child .uk-button {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.uk-button-group > .uk-button:last-child,
+.uk-button-group > div:last-child .uk-button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/*
+ * Collapse border
+ */
+
+.uk-button-group > .uk-button:nth-child(n+2),
+.uk-button-group > div:nth-child(n+2) .uk-button { margin-left: -1px; }
+
+/*
+ * Create position context to superimpose the successor elements border
+ * Known issue: If you use an `a` element as button and an icon inside,
+ * the active state will not work if you click the icon inside the button
+ * Workaround: Just use a `button` or `input` element as button
+ */
+
+.uk-button-group .uk-button:active { position: relative; }
+
+/* Sub-object `uk-dropdown-button`
+ ========================================================================== */
+
+/* Sets the arrow for the dropdown menus on buttons */
+
+.uk-button-dropdown > .uk-button:after {
+    content: @gratis_button-dropdown-icon;
+    font-family: "FontAwesome";
+    margin-left: 12px;
+}
+
+.uk-button-group div .uk-button:before {
+    content: @gratis_button-dropdown-icon;
+    font-family: "FontAwesome";
+}

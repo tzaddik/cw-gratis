@@ -1,10 +1,17 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
 @import "uikit/uikit.less";
 
 /* ========================================================================
    Warp theme
  ========================================================================== */
+
 
 /* Layout
  ========================================================================== */
@@ -15,29 +22,21 @@
 
 html { overflow-y: scroll; }
 
+/* Sets the margins between the different sections of the site */
+.tm-top, .tm-center {
+    margin-top: @gratis_global-margin;
+}
+
+.tm-center, .tm-bottom {
+    margin-bottom: @gratis_global-margin;
+}
+
 /*
  * Blocks
  */
 
-.tm-toolbar,
-.tm-headerbar,
-.tm-navbar,
-.tm-footer {
-    margin-top: @global-grid-gutter;
-    margin-bottom: @global-grid-gutter;
-}
-
 /* Only large screens */
-@media (min-width: @breakpoint-xlarge) {
-
-    .tm-headerbar,
-    .tm-navbar,
-    .tm-footer {
-        margin-top: @global-grid-gutter-large;
-        margin-bottom: @global-grid-gutter-large;
-    }
-
-}
+@media (min-width: @breakpoint-xlarge) {}
 
 /* Only phones */
 @media (max-width: @breakpoint-small-max) {
@@ -45,6 +44,11 @@ html { overflow-y: scroll; }
     .tm-navbar {
         margin: 0 -@utility-container-padding-horizontal @global-grid-gutter -@utility-container-padding-horizontal;
         border-width: 0 0 1px 0;
+    }
+
+    .tm-logo-small > img {
+        max-height: 100%;
+        width: auto;
     }
 
     .tm-logo-small:hover { text-decoration: none; };
@@ -64,6 +68,29 @@ html { overflow-y: scroll; }
  * Toolbar
  */
 
+.tm-toolbar{
+    background: @gratis_toolbar-footer-background;
+    border-bottom: @gratis_toolbar-border;
+    color: @gratis_toolbar-footer-text-color;
+    font-size: 80%;
+    height: auto;
+    text-shadow: @gratis_toolbar-footer-text-shadow;
+}
+
+#tm-toolbar-inner  {
+    background: url("../images/noise.png") 50% 0 repeat;
+    padding: 2px;
+}
+
+.tm-toolbar a {
+    color: @gratis_toolbar-footer-link-color;
+    text-shadow: @gratis_toolbar-footer-text-shadow;
+}
+
+.tm-toolbar a:hover {
+    color: @gratis_toolbar-footer-link-hover-color;
+}
+
 .tm-toolbar .uk-float-left .uk-panel {
     margin: 0 @global-grid-gutter 0 0;
     float: left;
@@ -78,12 +105,37 @@ html { overflow-y: scroll; }
  * Headerbar
  */
 
-.tm-headerbar .tm-logo { float: left; }
+.tm-headerbar {
+    background: -webkit-radial-gradient(50% 0, @gratis_header-gradient-top 0%, @gratis_header-gradient-top 20%, @gratis_header-gradient-bottom 70%) 50% 0 no-repeat;
+    background: radial-gradient(ellipse at 50% 0, @gratis_header-gradient-top 0%, @gratis_header-gradient-top 20%, @gratis_header-gradient-bottom 70%) 50% 0 no-repeat;
+    filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{gratis_header-gradient-top}', endColorstr='@{gratis_header-gradient-bottom}')";
+    background-color: @gratis_header-gradient-bottom;
+    height: auto;
+    padding: 10px 10px 15px 10px;
+    position: relative;
+    box-shadow: @gratis_header-footer-box-shadow;
+}
 
 .tm-headerbar .uk-panel {
-    max-width: 300px;
+    color: @gratis_toolbar-footer-link-hover-color;
     margin-right: 0;
+    max-width: 300px;
     float: right;
+}
+
+.tm-headerbar .uk-panel a {
+    color: @gratis_toolbar-footer-link-color;
+}
+
+.tm-headerbar .uk-panel a:hover {
+    color: #fff;
+}
+
+.tm-headerbar .tm-logo { float: left; }
+
+/* Style specific for the bubble theme on Widgetkit Twitter */
+.tm-headerbar .wk-twitter-bubbles .content {
+    color: #666;
 }
 
 /*
@@ -101,9 +153,32 @@ html { overflow-y: scroll; }
 .tm-footer {
     position: relative;
     text-align: center;
+    background: @gratis_toolbar-footer-background;
+    color: @gratis_toolbar-footer-text-color;
+    min-height: 100px;
+    height: auto;
+    overflow: hidden;
+    box-shadow: @gratis_header-footer-box-shadow;
 }
 
-.tm-footer .uk-panel + .uk-panel { margin-top: @global-grid-gutter; }
+.tm-footer-inner  { background: url("../images/noise.png") 50% 0 repeat; }
+
+.tm-footer a, tm-footer span.separator {
+    color: @gratis_toolbar-footer-link-color;
+    text-shadow: @gratis_toolbar-footer-text-shadow;
+}
+
+.tm-footer a:hover {
+    color: @gratis_toolbar-footer-link-hover-color;
+}
+
+.tm-footer .uk-panel {
+    padding: 25px 20px;
+}
+
+.tm-footer .uk-panel + .uk-panel { 
+    margin-top: @global-grid-gutter; 
+}
 
 /*
  * To-top scroller
@@ -182,15 +257,10 @@ html { overflow-y: scroll; }
 /* Socialbuttons
  ========================================================================== */
 
- .tm-socialbuttons {
-
-     line-height: 1;
-
-     > div {
-         margin-right: 10px;
-         float: left;
-     }
- }
+.tm-socialbuttons > div {
+    margin-right: 10px;
+    float: left;
+}
 
 
 /* WordPress only
@@ -198,14 +268,14 @@ html { overflow-y: scroll; }
 
 .alignleft {
     display: block;
-    margin-right: @utility-align-horizontal;
-    float: left;
+    margin-right: @utility-align-horizontal;  
+    float: left;  
 }
 
 .alignright {
     display: block;
-    margin-left: @utility-align-horizontal;
-    float: right;
+    margin-left: @utility-align-horizontal;  
+    float: right;  
 }
 
 .aligncenter {

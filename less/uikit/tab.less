@@ -1,13 +1,19 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Tab
-//
-// ========================================================================
+/*
+ * Tab component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @tab-border:                                    @global-border;
 @tab-color:                                     @global-link-color;
@@ -17,27 +23,179 @@
 @tab-active-color:                              @global-color;
 @tab-disabled-color:                            @global-muted-color;
 
-
-// Component
-// ========================================================================
-
-//
-// Items
-//
-
-.hook-tab() {}
-
-// Hover
-.hook-tab-hover() {}
-
-// Active
-.hook-tab-active() {}
-
-// Disabled
-.hook-tab-disabled() {}
+@gratis_tab-padding-horizontal:                 12px;
+@gratis_tab-background:                         @gratis_primary-border;
+@gratis_tab-hover-background:                   @global-link-hover-color;
+@gratis_tab-active-background:                  @gratis-active-color;
 
 
-// Miscellaneous
-// ========================================================================
+/* Component
+ ========================================================================== */
+
+/* 
+ * Sets the tab styling for the Switcher component. The &:after styles the highlight 
+ * styles for each tab
+ */
+
+/* The color of the border for the tab group */
+.uk-tab { border-bottom: 1px solid @gratis_tab-background; }
+
+.hook-tab() {
+    border-width: 0;
+    border-bottom-width: 1px;
+
+    &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        background: transparent;
+    }
+}
+
+.hook-tab-hover() {
+    background: none;
+    
+    &:after { background: @gratis_tab-hover-background; }
+}
+
+.hook-tab-active() { 
+    border-bottom-width: 0; 
+
+    &:after {
+        bottom: -1px;
+        background: @gratis_tab-active-background; 
+    }
+}
+
+.hook-tab-disabled() {
+    &:after { background: transparent; }
+}
+
+/* Centres the highlighted border around the highlighted tab */
+.uk-tab > li:nth-child(n+2) > a { margin-left: 15px; }
+
+.uk-tab > li:nth-child(n+2) > a:hover,
+.uk-tab > li.uk-active:nth-child(n+2) > a { 
+
+    &:after { left: 15px; }
+}
+
+/* Modifier: 'tab-flip'
+========================================================================== */
+
+/* Reverse the direction the tabs are organised in (for RTL) */
+.uk-tab-flip > li:nth-child(n+2) > a {
+    margin-right: 15px;
+    margin-left: 0;
+}
+
+.uk-tab-flip > li:nth-child(n+2) > a:hover,
+.uk-tab-flip > li.uk-active:nth-child(n+2) > a { 
+
+    &:after {
+        right: 15px;
+        left: 0;
+    }
+}
+
+/* Modifier: 'tab-bottom'
+ ========================================================================== */
+
+/* Sets the highlighted border above the tabs */
+.uk-tab-bottom > li > a {
+
+    border-width: 0;
+
+    &:after {
+        top: 0;
+        bottom: auto;
+    }
+}
+
+.uk-tab-bottom {
+    border-top: 1px solid @gratis_tab-background;
+    border-bottom: none;
+}
+
+/* Modifier: 'tab-left', 'tab-right'
+ ========================================================================== */
+
+/* Only tablets and desktops */
+@media (min-width: @breakpoint-medium) {
+
+    /* Removes the top and bottom paddings, which causes trouble with hovers */
+    .uk-tab-left > li > a,
+    .uk-tab-right > li > a { padding: 0 @gratis_tab-padding-horizontal; }
+
+    .uk-tab-left > li:nth-child(n+2) > a,
+    .uk-tab-right > li:nth-child(n+2) > a { margin-left: 0; }
+
+    /*
+     * Modifier: 'tab-left'
+     */
+
+    .uk-tab-left { 
+        border-right: 1px solid @gratis_tab-background;
+        border-bottom: none;
+    }
+
+    .uk-tab-left > li > a { 
+        border-width: 0;
+
+        &:after {
+            top: 0;
+            bottom: 0 !important;
+            left: auto !important;
+            width: 2px;
+            height: auto;
+            background: transparent;
+        }
+    }
+
+    .uk-tab-left > li:not(.uk-active) > a:hover,
+    .uk-tab-left > li:not(.uk-active) > a:focus { 
+        margin-right: 0;
+        padding-bottom: 0;
+    }
+
+    /*
+     * Modifier: 'tab-right'
+     */
+
+    .uk-tab-right { 
+        border-left: 1px solid @gratis_tab-background;
+        border-bottom: none;
+    }
+
+    .uk-tab-right > li > a {
+
+        padding-left: 15px;
+        border-width: 0;
+
+        &:after {
+            top: 0;
+            bottom: 0 !important;
+            right: auto !important;
+            left: 0 !important;
+            width: 2px;
+            height: auto;
+            background: transparent;
+        }
+    }
+
+    .uk-tab-right > li:not(.uk-active) > a:hover,
+    .uk-tab-right > li:not(.uk-active) > a:focus { 
+        padding-bottom: 0; 
+        margin-left: 0; 
+    }
+}
+
+
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-tab-misc() {}

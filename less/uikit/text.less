@@ -1,13 +1,19 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Text
-//
-// ========================================================================
+/*
+ * Text component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @text-small-font-size:                          round((@global-font-size * 0.78)); // 11px / 12px
 @text-small-line-height:                        round((@text-small-font-size * 1.49)); // 16px / 18px
@@ -16,8 +22,12 @@
 
 @text-muted-color:                              @global-muted-color;
 
+@gratis_text-primary-color:                     @gratis-active-color;
 
-// Miscellaneous
-// ========================================================================
+
+.uk-text-primary { color: @gratis_text-primary-color !important; }
+
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-text-misc() {}

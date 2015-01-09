@@ -1,57 +1,86 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Badge
-//
-// ========================================================================
+/*
+ * Badge component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @badge-background:                              @global-primary-background;
+@gratis_badge-primary-gradient-top:             @gratis_primary-gradient-top;
+@gratis_badge-primary-gradient-bottom:          @gratis_primary-gradient-bottom;
 @badge-font-size:                               round((@global-font-size * 0.74)); // 10px / 12px
 @badge-line-height:                             round((@badge-font-size * 1.36)); // 14px / 16px
 @badge-color:                                   @global-contrast-color;
 @badge-hover-color:                             @global-contrast-color;
+@gratis_badge-font-size:                        11px;
+@gratis_badge-font-weight:                      normal;
 
 @badge-notification-font-size:                  round((@global-font-size * 0.85)); // 12px / 14px
 @badge-notification-line-height:                round((@badge-notification-font-size * 1.46)); // 18px / 20px
 
 @badge-success-background:                      @global-success-background;
+@gratis_badge-success-gradient-top:             @gratis_global-success-gradient-top;
+@gratis_badge-success-gradient-bottom:          @gratis_global-success-gradient-bottom;
+
 @badge-warning-background:                      @global-warning-background;
+@gratis_badge-warning-gradient-top:             @gratis_global-warning-gradient-top;
+@gratis_badge-warning-gradient-bottom:          @gratis_global-warning-gradient-bottom;
+
 @badge-danger-background:                       @global-danger-background;
+@gratis_badge-danger-gradient-top:              @gratis_global-danger-gradient-top;
+@gratis_badge-danger-gradient-bottom:           @gratis_global-danger-gradient-bottom;
 
+/* Component
+ ========================================================================== */
 
-// Component
-// ========================================================================
+/*
+ * 1. `background-origin` is needed to prevent the background-image gradients from repeating under the border
+ */
 
-.hook-badge() {}
+.hook-badge() {
+	background-origin: border-box; /* 1 */
+	background-image: -webkit-linear-gradient(top, @gratis_badge-primary-gradient-top, @gratis_badge-primary-gradient-bottom);
+	background-image: linear-gradient(to bottom, @gratis_badge-primary-gradient-top, @gratis_badge-primary-gradient-bottom);
+        background-color: @gratis_badge-primary-gradient-top;
+	border-radius: 2px;
+        font-size: @gratis_badge-font-size;
+        font-weight: @gratis_badge-font-weight;
+        box-shadow: inset 0 2px 4px @gratis_global-box-shadow;
+        text-shadow: 0 -1px 0 @gratis_global-text-shadow;
+}
 
+/* Color modifier
+ ========================================================================== */
 
-// Color modifier
-// ========================================================================
+.hook-badge-success() {
+	background-image: -webkit-linear-gradient(top, @gratis_badge-success-gradient-top, @gratis_badge-success-gradient-bottom);
+	background-image: linear-gradient(to bottom, @gratis_badge-success-gradient-top, @gratis_badge-success-gradient-bottom);
+        background-color: @badge-success-background;
+}
 
-//
-// Modifier: `badge-success`
-//
+.hook-badge-warning() {
+	background-image: -webkit-linear-gradient(top, @gratis_badge-warning-gradient-top, @gratis_badge-warning-gradient-bottom);
+	background-image: linear-gradient(to bottom, @gratis_badge-warning-gradient-top, @gratis_badge-warning-gradient-bottom);
+        background-color: @badge-warning-background;
+}
 
-.hook-badge-success() {}
+.hook-badge-danger() {
+	background-image: -webkit-linear-gradient(top, @gratis_badge-danger-gradient-top, @gratis_badge-danger-gradient-bottom);
+	background-image: linear-gradient(to bottom, @gratis_badge-danger-gradient-top, @gratis_badge-danger-gradient-bottom);
+        background-color: @badge-danger-background;
+}
 
-//
-// Modifier: `badge-warning`
-//
-
-.hook-badge-warning() {}
-
-//
-// Modifier: `badge-danger`
-//
-
-.hook-badge-danger() {}
-
-
-// Miscellaneous
-// ========================================================================
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-badge-misc() {}

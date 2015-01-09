@@ -1,34 +1,67 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Dropdown
-//
-// ========================================================================
+/*
+ * Dropdown component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
-@dropdown-z-index:                              @global-z-index + 20;
+@dropdown-z-index:                              (@global-z-index + 20);
 @dropdown-color:                                @global-color;
 @dropdown-divider-border:                       @global-border;
+@gratis_dropdown-width:                         220px;
+
+@gratis_dropdown-border:                        @gratis_primary-border;
+@gratis_dropdown-border-radius:                 @gratis_global-border-radius;
+@gratis_dropdown-box-shadow:                    @gratis_global-box-shadow;
 
 @dropdown-navbar-color:                         @global-color;
 
 
-// Component
-// ========================================================================
+/* Component
+ ========================================================================== */
 
-.hook-dropdown() {}
+.dropdown-style {
+    border: 1px solid @gratis_dropdown-border;
+    border-radius: @gratis_dropdown-border-radius;
+    box-shadow: 0 2px 5px @gratis_dropdown-box-shadow;
+}
+
+.hook-dropdown() {
+    width: @gratis_dropdown-width;
+    .dropdown-style;
+}
+
+/*
+ * Column divider
+ */
+
+.uk-dropdown:not(.uk-dropdown-stack) > .uk-grid > [class*='uk-width-']:nth-child(n+2) { 
+    border-left: 1px solid @gratis_dropdown-border; 
+}
 
 
-// Modifier: `uk-dropdown-navbar`
-// ========================================================================
+/* Modifier: `uk-dropdown-navbar`
+ ========================================================================== */
 
-.hook-dropdown-navbar() {}
+.hook-dropdown-navbar() {
+    left: -1px;
+    .dropdown-style;
+}
+
+.uk-dropdown-navbar.uk-dropdown-flip { left: auto; }
 
 
-// Miscellaneous
-// ========================================================================
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-dropdown-misc() {}

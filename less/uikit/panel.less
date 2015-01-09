@@ -1,68 +1,555 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Panel
-//
-// ========================================================================
-
-
-// Variables
-// ========================================================================
-
-@panel-title-margin-bottom:                     @global-margin;
-@panel-title-font-size:                         round((@global-font-size * 1.28)); // 18px / 20px
-@panel-title-line-height:                       round((@panel-title-font-size * 1.32)); // 24px / 26px
-@panel-title-color:                             @global-color;
-
-@panel-box-padding:                             @global-margin;
-@panel-box-color:                               @global-color;
-@panel-box-title-color:                         @global-color;
-
-@panel-header-title-border:                     @global-border;
-@panel-header-title-color:                      @global-color;
-
-@panel-divider-gutter:                          @global-grid-gutter;
-@panel-divider-gutter-large:                    @global-grid-gutter-large;
-@panel-divider-border:                          @global-border;
+/*
+ * Panel component
+ *
+ ========================================================================== */
 
 
-// Sub-object: `uk-panel-title`
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
-.hook-panel-title() {}
+@panel-title-margin-bottom:                         @global-margin;
+@panel-title-font-size:                             round((@global-font-size * 1.28)); // 18px
+@panel-title-line-height:                           round((@panel-title-font-size * 1.33)); // 24px
+@panel-title-color:                                 @global-color;
+@gratis_panel-title-color:                          @gratis-active-color;
+
+@panel-box-padding:                                 @global-margin;
+@panel-box-color:                                   @global-color;
+@panel-box-title-color:                             @global-color;
+@panel-box-badge-right:                             @panel-box-badge-top;
+@gratis_panel-box-gradient-top:                     #ffffff;
+@gratis_panel-box-gradient-bottom:                  #f4f5f9;
+@gratis_panel-box-border:                           fade(@gratis_primary-border, 20%);
+@gratis_panel-box-border-radius:                    @gratis_global-border-radius;
+
+@gratis_panel-box-title-blue:                       @gratis-active-color-blue;
+@gratis_panel-box-heading-color-blue:               @gratis-active-color-blue;
+@gratis_panel-box-border-blue:                      fade(@gratis_panel-box-title-blue, 20%);
+@gratis_panel-box-link-blue:                        @gratis-link-color-blue;
+@gratis_panel-box-hover-blue:                       @gratis-link-hover-color-blue;
+@gratis_panel-box-hover-gradient-top-blue:          @gratis_gradient-top-blue;
+@gratis_panel-box-hover-gradient-bottom-blue:       @gratis_gradient-bottom-blue;
+@gratis_panel-box-active-background-blue:           @gratis-active-color-blue;
+
+@gratis_panel-box-title-green:                      @gratis-active-color-green;
+@gratis_panel-box-heading-color-green:              @gratis-active-color-green;
+@gratis_panel-box-border-green:                     fade(@gratis_panel-box-title-green, 20%);
+@gratis_panel-box-link-green:                       @gratis-link-color-green;
+@gratis_panel-box-hover-green:                      @gratis-link-hover-color-green;
+@gratis_panel-box-hover-gradient-top-green:         @gratis_gradient-top-green;
+@gratis_panel-box-hover-gradient-bottom-green:      @gratis_gradient-bottom-green;
+@gratis_panel-box-active-background-green:          @gratis-active-color-green;
+
+@gratis_panel-box-title-orange:                     @gratis-active-color-orange;
+@gratis_panel-box-heading-color-orange:             @gratis-active-color-orange;
+@gratis_panel-box-border-orange:                    fade(@gratis_panel-box-title-orange, 20%);
+@gratis_panel-box-link-orange:                      @gratis-link-color-orange;
+@gratis_panel-box-hover-orange:                     @gratis-link-hover-color-orange;
+@gratis_panel-box-hover-gradient-top-orange:        @gratis_gradient-top-orange;
+@gratis_panel-box-hover-gradient-bottom-orange:     @gratis_gradient-bottom-orange;
+@gratis_panel-box-active-background-orange:         @gratis-active-color-orange;
+
+@gratis_panel-box-title-pink:                       @gratis-active-color-pink;
+@gratis_panel-box-heading-color-pink:               @gratis-active-color-pink;
+@gratis_panel-box-border-pink:                      fade(@gratis_panel-box-title-pink, 20%);
+@gratis_panel-box-link-pink:                        @gratis-link-color-pink;
+@gratis_panel-box-hover-pink:                       @gratis-link-hover-color-pink;
+@gratis_panel-box-hover-gradient-top-pink:          @gratis_gradient-top-pink;
+@gratis_panel-box-hover-gradient-bottom-pink:       @gratis_gradient-bottom-pink;
+@gratis_panel-box-active-background-pink:           @gratis-active-color-pink;
+
+@gratis_panel-box-title-red:                        @gratis-active-color-red;
+@gratis_panel-box-heading-color-red:                @gratis-active-color-red;
+@gratis_panel-box-border-red:                       fade(@gratis_panel-box-title-red, 20%);
+@gratis_panel-box-link-red:                         @gratis-link-color-red;
+@gratis_panel-box-hover-red:                        @gratis-link-hover-color-red;
+@gratis_panel-box-hover-gradient-top-red:           @gratis_gradient-top-red;
+@gratis_panel-box-hover-gradient-bottom-red:        @gratis_gradient-bottom-red;
+@gratis_panel-box-active-background-red:            @gratis-active-color-red;
+
+@gratis_panel-box-title-teal:                       @gratis-active-color-teal;
+@gratis_panel-box-heading-color-teal:               @gratis-active-color-teal;
+@gratis_panel-box-border-teal:                      fade(@gratis_panel-box-title-teal, 20%);
+@gratis_panel-box-link-teal:                        @gratis-link-color-teal;
+@gratis_panel-box-hover-teal:                       @gratis-link-hover-color-teal;
+@gratis_panel-box-hover-gradient-top-teal:          @gratis_gradient-top-teal;
+@gratis_panel-box-hover-gradient-bottom-teal:       @gratis_gradient-bottom-teal;
+@gratis_panel-box-active-background-teal:           @gratis-active-color-teal;
+
+@panel-header-title-border:                         @global-border;
+@panel-header-title-color:                          @global-color;
+
+@panel-divider-gutter:                              @global-grid-gutter;
+@panel-divider-gutter-large:                        @global-grid-gutter-large;
+@panel-divider-border:                              @global-border;
 
 
-// Sub-object: `uk-panel-badge`
-// ========================================================================
+/* Sub-object: `uk-panel-title`
+ ========================================================================== */
+
+.hook-panel-title() {
+    color: @gratis_panel-title-color;
+    font-size: 140%;
+}
+
+
+/* Sub-object: `uk-panel-badge`
+ ========================================================================== */
 
 .hook-panel-badge() {}
 
 
-// Modifier: `uk-panel-box`
-// ========================================================================
+/* Modifier: `uk-panel-box`
+ ========================================================================== */
 
-.hook-panel-box() {}
+.hook-panel-box() {
+    background-origin: border-box;
+    background-image: -webkit-linear-gradient(top, @gratis_panel-box-gradient-top, @gratis_panel-box-gradient-bottom);
+    background-image: linear-gradient(to bottom, @gratis_panel-box-gradient-top, @gratis_panel-box-gradient-bottom);
+    border: 1px solid @gratis_panel-box-border;
+    border-radius: @gratis_panel-box-border-radius;
+    box-shadow: 0 0 10px @gratis_global-box-shadow;
+}
 
-//
-// Sub-modifier: `uk-panel-box-primary`
-//
+.uk-panel-box .uk-panel-title {color: @gratis_panel-title-color;}
 
 .hook-panel-box-primary() {}
 
-//
-// Sub-modifier: `uk-panel-box-secondary`
-//
 
-.hook-panel-box-secondary() {}
+/* Modifier: `panel-box-blue`
+ ========================================================================== */
+
+/* Panel title, active text and borders */
+.panel-box-blue blockquote, .panel-box-blue .uk-panel-title,
+.panel-box-blue .uk-panel-box .uk-panel-title,
+.panel-box-blue .uk-panel-header .uk-panel-title,
+.panel-box-blue .uk-nav-side .uk-nav-sub li.uk-active > a {
+    color: @gratis_panel-box-title-blue;
+}
+
+.panel-box-blue h1, .panel-box-blue h2, 
+.panel-box-blue h3, .panel-box-blue h4, 
+.panel-box-blue h5, .panel-box-blue h6 { 
+    color: @gratis_panel-box-heading-color-blue; 
+}
+
+.panel-box-blue.uk-panel-box {
+    border: 1px solid @gratis_panel-box-border-blue;
+}
+
+.panel-box-blue .uk-panel-header .uk-panel-title {
+    border-bottom: 1px solid @gratis_panel-box-border-blue;
+}
+
+/* Button, pagination, progress bar and badge backgrounds */
+.panel-box-blue .uk-button-primary, 
+.panel-box-blue .uk-pagination > .uk-active > span,
+.panel-box-blue .uk-progress-bar,
+.panel-box-blue .uk-badge {
+    background-image: -webkit-linear-gradient(top, @gratis_button-blue-gradient-top, @gratis_button-blue-gradient-bottom);
+    background-image: linear-gradient(@gratis_button-blue-gradient-top, @gratis_button-blue-gradient-bottom);
+    background-color: @gratis_button-blue-gradient-top;
+}
+
+.panel-box-blue .uk-button-primary:hover, .panel-box-blue .uk-button-primary:focus,
+.panel-box-blue .uk-button-primary:active { background: @gratis_button-blue-gradient-bottom; }
+
+/* Nav Menu */
+
+/* Sets the link colour within the module style */
+.panel-box-blue a, .panel-box-blue em, .panel-box-blue code,
+.panel-box-blue .uk-nav-parent-icon > li > a:after, 
+.panel-box-blue .uk-nav-side ul a {
+    color: @gratis_panel-box-link-blue;
+}
+
+/* Sets the link hover colour within the module style */
+.panel-box-blue a:hover,
+.panel-box-blue .uk-nav-side ul a:hover {
+    color: @gratis_panel-box-hover-blue;
+}
+
+/* Sets the hover and focus styling for the non-sub-menu items within the module style*/
+.panel-box-blue .uk-nav-side > li:not(.uk-active) > a:hover, 
+.panel-box-blue .uk-nav-side > li.uk-open > a:focus {
+    background-color: @gratis_panel-box-hover-gradient-bottom-blue;
+    background-image: -webkit-linear-gradient(top, @gratis_panel-box-hover-gradient-top-blue, @gratis_panel-box-hover-gradient-bottom-blue);
+    background-image: linear-gradient(to bottom, @gratis_panel-box-hover-gradient-top-blue, @gratis_panel-box-hover-gradient-bottom-blue);
+}
+
+/* Sets the active background for the non-sub-menu items within the module style*/
+.panel-box-blue .uk-nav-side > li.uk-active > a,
+.panel-box-blue .uk-nav-side > li.uk-active > a:hover {
+    background: @gratis_panel-box-active-background-blue;
+}
 
 
-// Modifier: `uk-panel-header`
-// ========================================================================
+/* Modifier: `panel-box-green`
+ ========================================================================== */
 
-.hook-panel-header() {}
+/* Panel title, active text and borders */
+.panel-box-green blockquote, .panel-box-green .uk-panel-title,
+.panel-box-green .uk-panel-box .uk-panel-title,
+.panel-box-green .uk-panel-header .uk-panel-title,
+.panel-box-green .uk-nav-side .uk-nav-sub li.uk-active > a {
+    color: @gratis_panel-box-title-green;
+}
+
+.panel-box-green h1, .panel-box-green h2, 
+.panel-box-green h3, .panel-box-green h4, 
+.panel-box-green h5, .panel-box-green h6 { 
+    color: @gratis_panel-box-heading-color-green; 
+}
+
+.panel-box-green.uk-panel-box {
+    border: 1px solid @gratis_panel-box-border-green;
+}
+
+.panel-box-green .uk-panel-header .uk-panel-title {
+    border-bottom: 1px solid @gratis_panel-box-border-green;
+}
+
+/* Button, pagination, progress bar and badge backgrounds */
+.panel-box-green .uk-button-primary, 
+.panel-box-green .uk-pagination > .uk-active > span,
+.panel-box-green .uk-progress-bar,
+.panel-box-green .uk-badge {
+    background-image: -webkit-linear-gradient(top, @gratis_button-green-gradient-top, @gratis_button-green-gradient-bottom);
+    background-image: linear-gradient(@gratis_button-green-gradient-top, @gratis_button-green-gradient-bottom);
+    background-color: @gratis_button-green-gradient-top;
+}
+
+.panel-box-green .uk-button-primary:hover, .panel-box-green .uk-button-primary:focus,
+.panel-box-green .uk-button-primary:active { background: @gratis_button-green-gradient-bottom; }
+
+/* Nav Menu */
+
+/* Sets the link colour within the module style */
+.panel-box-green a, .panel-box-green em, .panel-box-green code,
+.panel-box-green .uk-nav-parent-icon > li > a:after, 
+.panel-box-green .uk-nav-side ul a {
+    color: @gratis_panel-box-link-green;
+}
+
+/* Sets the link hover colour within the module style */
+.panel-box-green a:hover,
+.panel-box-green .uk-nav-side ul a:hover {
+    color: @gratis_panel-box-hover-green;
+}
+
+/* Sets the hover and focus styling for the non-sub-menu items within the module style*/
+.panel-box-green .uk-nav-side > li:not(.uk-active) > a:hover, 
+.panel-box-green .uk-nav-side > li.uk-open > a:focus {
+    background-color: @gratis_panel-box-hover-gradient-bottom-green;
+    background-image: -webkit-linear-gradient(top, @gratis_panel-box-hover-gradient-top-green, @gratis_panel-box-hover-gradient-bottom-green);
+    background-image: linear-gradient(to bottom, @gratis_panel-box-hover-gradient-top-green, @gratis_panel-box-hover-gradient-bottom-green);
+}
+
+/* Sets the active background for the non-sub-menu items within the module style*/
+.panel-box-green .uk-nav-side > li.uk-active > a,
+.panel-box-green .uk-nav-side > li.uk-active > a:hover {
+    background: @gratis_panel-box-active-background-green;
+}
 
 
-// Miscellaneous
-// ========================================================================
+/* Modifier: `panel-box-orange`
+ ========================================================================== */
 
-.hook-panel-misc() {}
+/* Panel title, active text and borders */
+.panel-box-orange blockquote, .panel-box-orange .uk-panel-title,
+.panel-box-orange .uk-panel-box .uk-panel-title,
+.panel-box-orange .uk-panel-header .uk-panel-title,
+.panel-box-orange .uk-nav-side .uk-nav-sub li.uk-active > a {
+    color: @gratis_panel-box-title-orange;
+}
+
+.panel-box-orange h1, .panel-box-orange h2, 
+.panel-box-orange h3, .panel-box-orange h4, 
+.panel-box-orange h5, .panel-box-orange h6 { 
+    color: @gratis_panel-box-heading-color-orange; 
+}
+
+.panel-box-orange.uk-panel-box {
+    border: 1px solid @gratis_panel-box-border-orange;
+}
+
+.panel-box-orange .uk-panel-header .uk-panel-title {
+    border-bottom: 1px solid @gratis_panel-box-border-orange;
+}
+
+/* Button, pagination, progress bar and badge backgrounds */
+.panel-box-orange .uk-button-primary, 
+.panel-box-orange .uk-pagination > .uk-active > span,
+.panel-box-orange .uk-progress-bar,
+.panel-box-orange .uk-badge {
+    background-image: -webkit-linear-gradient(top, @gratis_button-orange-gradient-top, @gratis_button-orange-gradient-bottom);
+    background-image: linear-gradient(@gratis_button-orange-gradient-top, @gratis_button-orange-gradient-bottom);
+    background-color: @gratis_button-orange-gradient-top;
+}
+
+.panel-box-orange .uk-button-primary:hover, .panel-box-orange .uk-button-primary:focus,
+.panel-box-orange .uk-button-primary:active { background: @gratis_button-orange-gradient-bottom; }
+
+/* Nav Menu */
+
+/* Sets the link colour within the module style */
+.panel-box-orange a, .panel-box-orange em, .panel-box-orange code,
+.panel-box-orange .uk-nav-parent-icon > li > a:after, 
+.panel-box-orange .uk-nav-side ul a {
+    color: @gratis_panel-box-link-orange;
+}
+
+/* Sets the link hover colour within the module style */
+.panel-box-orange a:hover,
+.panel-box-orange .uk-nav-side ul a:hover {
+    color: @gratis_panel-box-hover-orange;
+}
+
+/* Sets the hover and focus styling for the non-sub-menu items within the module style*/
+.panel-box-orange .uk-nav-side > li:not(.uk-active) > a:hover, 
+.panel-box-orange .uk-nav-side > li.uk-open > a:focus {
+    background-color: @gratis_panel-box-hover-gradient-bottom-orange;
+    background-image: -webkit-linear-gradient(top, @gratis_panel-box-hover-gradient-top-orange, @gratis_panel-box-hover-gradient-bottom-orange);
+    background-image: linear-gradient(to bottom, @gratis_panel-box-hover-gradient-top-orange, @gratis_panel-box-hover-gradient-bottom-orange);
+}
+
+/* Sets the active background for the non-sub-menu items within the module style*/
+.panel-box-orange .uk-nav-side > li.uk-active > a,
+.panel-box-orange .uk-nav-side > li.uk-active > a:hover {
+    background: @gratis_panel-box-active-background-orange;
+}
+
+
+/* Modifier: `panel-box-pink`
+ ========================================================================== */
+
+/* Panel title, active text and borders */
+.panel-box-pink blockquote, .panel-box-pink .uk-panel-title,
+.panel-box-pink .uk-panel-box .uk-panel-title,
+.panel-box-pink .uk-panel-header .uk-panel-title,
+.panel-box-pink .uk-nav-side .uk-nav-sub li.uk-active > a {
+    color: @gratis_panel-box-title-pink;
+}
+
+.panel-box-pink h1, .panel-box-pink h2, 
+.panel-box-pink h3, .panel-box-pink h4, 
+.panel-box-pink h5, .panel-box-pink h6 { 
+    color: @gratis_panel-box-heading-color-pink; 
+}
+
+.panel-box-pink.uk-panel-box {
+    border: 1px solid @gratis_panel-box-border-pink;
+}
+
+.panel-box-pink .uk-panel-header .uk-panel-title {
+    border-bottom: 1px solid @gratis_panel-box-border-pink;
+}
+
+/* Button, pagination, progress bar and badge backgrounds */
+.panel-box-pink .uk-button-primary, 
+.panel-box-pink .uk-pagination > .uk-active > span,
+.panel-box-pink .uk-progress-bar,
+.panel-box-pink .uk-badge {
+    background-image: -webkit-linear-gradient(top, @gratis_button-pink-gradient-top, @gratis_button-pink-gradient-bottom);
+    background-image: linear-gradient(@gratis_button-pink-gradient-top, @gratis_button-pink-gradient-bottom);
+    background-color: @gratis_button-pink-gradient-top;
+}
+
+.panel-box-pink .uk-button-primary:hover, .panel-box-pink .uk-button-primary:focus,
+.panel-box-pink .uk-button-primary:active { background: @gratis_button-pink-gradient-bottom; }
+
+/* Nav Menu */
+
+/* Sets the link colour within the module style */
+.panel-box-pink a, .panel-box-pink em, .panel-box-pink code,
+.panel-box-pink .uk-nav-parent-icon > li > a:after, 
+.panel-box-pink .uk-nav-side ul a {
+    color: @gratis_panel-box-link-pink;
+}
+
+/* Sets the link hover colour within the module style */
+.panel-box-pink a:hover,
+.panel-box-pink .uk-nav-side ul a:hover {
+    color: @gratis_panel-box-hover-pink;
+}
+
+/* Sets the hover and focus styling for the non-sub-menu items within the module style*/
+.panel-box-pink .uk-nav-side > li:not(.uk-active) > a:hover, 
+.panel-box-pink .uk-nav-side > li.uk-open > a:focus {
+    background-color: @gratis_panel-box-hover-gradient-bottom-pink;
+    background-image: -webkit-linear-gradient(top, @gratis_panel-box-hover-gradient-top-pink, @gratis_panel-box-hover-gradient-bottom-pink);
+    background-image: linear-gradient(to bottom, @gratis_panel-box-hover-gradient-top-pink, @gratis_panel-box-hover-gradient-bottom-pink);
+}
+
+/* Sets the active background for the non-sub-menu items within the module style*/
+.panel-box-pink .uk-nav-side > li.uk-active > a,
+.panel-box-pink .uk-nav-side > li.uk-active > a:hover {
+    background: @gratis_panel-box-active-background-pink;
+}
+
+
+/* Modifier: `panel-box-red`
+ ========================================================================== */
+
+/* Panel title, active text and borders */
+.panel-box-red blockquote, .panel-box-red .uk-panel-title,
+.panel-box-red .uk-panel-box .uk-panel-title,
+.panel-box-red .uk-panel-header .uk-panel-title,
+.panel-box-red .uk-nav-side .uk-nav-sub li.uk-active > a {
+    color: @gratis_panel-box-title-red;
+}
+
+.panel-box-red h1, .panel-box-red h2, 
+.panel-box-red h3, .panel-box-red h4, 
+.panel-box-red h5, .panel-box-red h6 { 
+    color: @gratis_panel-box-heading-color-red; 
+}
+
+.panel-box-red.uk-panel-box {
+    border: 1px solid @gratis_panel-box-border-red;
+}
+
+.panel-box-red .uk-panel-header .uk-panel-title {
+    border-bottom: 1px solid @gratis_panel-box-border-red;
+}
+
+/* Button, pagination, progress bar and badge backgrounds */
+.panel-box-red .uk-button-primary, 
+.panel-box-red .uk-pagination > .uk-active > span,
+.panel-box-red .uk-progress-bar,
+.panel-box-red .uk-badge {
+    background-image: -webkit-linear-gradient(top, @gratis_button-red-gradient-top, @gratis_button-red-gradient-bottom);
+    background-image: linear-gradient(@gratis_button-red-gradient-top, @gratis_button-red-gradient-bottom);
+    background-color: @gratis_button-red-gradient-top;
+}
+
+.panel-box-red .uk-button-primary:hover, .panel-box-red .uk-button-primary:focus,
+.panel-box-red .uk-button-primary:active { background: @gratis_button-red-gradient-bottom; }
+
+/* Nav Menu */
+
+/* Sets the link colour within the module style */
+.panel-box-red a, .panel-box-red em, .panel-box-red code,
+.panel-box-red .uk-nav-parent-icon > li > a:after, 
+.panel-box-red .uk-nav-side ul a {
+    color: @gratis_panel-box-link-red;
+}
+
+/* Sets the link hover colour within the module style */
+.panel-box-red a:hover,
+.panel-box-red .uk-nav-side ul a:hover {
+    color: @gratis_panel-box-hover-red;
+}
+
+/* Sets the hover and focus styling for the non-sub-menu items within the module style*/
+.panel-box-red .uk-nav-side > li:not(.uk-active) > a:hover, 
+.panel-box-red .uk-nav-side > li.uk-open > a:focus {
+    background-color: @gratis_panel-box-hover-gradient-bottom-red;
+    background-image: -webkit-linear-gradient(top, @gratis_panel-box-hover-gradient-top-red, @gratis_panel-box-hover-gradient-bottom-red);
+    background-image: linear-gradient(to bottom, @gratis_panel-box-hover-gradient-top-red, @gratis_panel-box-hover-gradient-bottom-red);
+}
+
+/* Sets the active background for the non-sub-menu items within the module style*/
+.panel-box-red .uk-nav-side > li.uk-active > a,
+.panel-box-red .uk-nav-side > li.uk-active > a:hover {
+    background: @gratis_panel-box-active-background-red;
+}
+
+
+/* Modifier: `panel-box-teal`
+ ========================================================================== */
+
+/* Panel title, active text and borders */
+.panel-box-teal blockquote, .panel-box-teal .uk-panel-title,
+.panel-box-teal .uk-panel-box .uk-panel-title,
+.panel-box-teal .uk-panel-header .uk-panel-title,
+.panel-box-teal .uk-nav-side .uk-nav-sub li.uk-active > a {
+    color: @gratis_panel-box-title-teal;
+}
+
+.panel-box-teal h1, .panel-box-teal h2, 
+.panel-box-teal h3, .panel-box-teal h4, 
+.panel-box-teal h5, .panel-box-teal h6 { 
+    color: @gratis_panel-box-heading-color-teal; 
+}
+
+.panel-box-teal.uk-panel-box {
+    border: 1px solid @gratis_panel-box-border-teal;
+}
+
+.panel-box-teal .uk-panel-header .uk-panel-title {
+    border-bottom: 1px solid @gratis_panel-box-border-teal;
+}
+
+/* Button, pagination, progress bar and badge backgrounds */
+.panel-box-teal .uk-button-primary, 
+.panel-box-teal .uk-pagination > .uk-active > span,
+.panel-box-teal .uk-progress-bar,
+.panel-box-teal .uk-badge {
+    background-image: -webkit-linear-gradient(top, @gratis_button-teal-gradient-top, @gratis_button-teal-gradient-bottom);
+    background-image: linear-gradient(@gratis_button-teal-gradient-top, @gratis_button-teal-gradient-bottom);
+    background-color: @gratis_button-teal-gradient-top;
+}
+
+.panel-box-teal .uk-button-primary:hover, .panel-box-teal .uk-button-primary:focus,
+.panel-box-teal .uk-button-primary:active { background: @gratis_button-teal-gradient-bottom; }
+
+/* Nav Menu */
+
+/* Sets the link colour within the module style */
+.panel-box-teal a, .panel-box-teal em, .panel-box-teal code,
+.panel-box-teal .uk-nav-parent-icon > li > a:after, 
+.panel-box-teal .uk-nav-side ul a {
+    color: @gratis_panel-box-link-teal;
+}
+
+/* Sets the link hover colour within the module style */
+.panel-box-teal a:hover,
+.panel-box-teal .uk-nav-side ul a:hover {
+    color: @gratis_panel-box-hover-teal;
+}
+
+/* Sets the hover and focus styling for the non-sub-menu items within the module style*/
+.panel-box-teal .uk-nav-side > li:not(.uk-active) > a:hover, 
+.panel-box-teal .uk-nav-side > li.uk-open > a:focus {
+    background-color: @gratis_panel-box-hover-gradient-bottom-teal;
+    background-image: -webkit-linear-gradient(top, @gratis_panel-box-hover-gradient-top-teal, @gratis_panel-box-hover-gradient-bottom-teal);
+    background-image: linear-gradient(to bottom, @gratis_panel-box-hover-gradient-top-teal, @gratis_panel-box-hover-gradient-bottom-teal);
+}
+
+/* Sets the active background for the non-sub-menu items within the module style*/
+.panel-box-teal .uk-nav-side > li.uk-active > a,
+.panel-box-teal .uk-nav-side > li.uk-active > a:hover {
+    background: @gratis_panel-box-active-background-teal;
+}
+
+
+/* Modifier: `uk-panel-header`
+ ========================================================================== */
+
+.hook-panel-header() {
+    border-bottom: 1px solid @gratis_panel-box-border;
+    color: @gratis_panel-title-color;
+}
+
+
+/* Miscellaneous
+ ========================================================================== */
+
+.hook-panel-misc() {
+    
+    /* Fixes centering issue in Widgetkit */
+    .uk-panel .wk-slideshow {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+}

@@ -1,65 +1,99 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Subnav
-//
-// ========================================================================
+
+/*
+ * Subnav component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @subnav-color:                                  @global-link-color;
 @subnav-hover-color:                            @global-link-hover-color;
 @subnav-disabled-color:                         @global-muted-color;
 
 @subnav-line-border:                            @global-border;
+@gratis_subnav-line-border:                     @gratis_subnav-line-link-color;
+@gratis_subnav-line-link-size:                  18px;
+@gratis_subnav-line-link-color:                 @gratis_toolbar-footer-link-color;
+@gratis_subnav-line-link-hover-color:           @gratis_toolbar-footer-link-hover-color;
+@gratis_subnav-line-text-shadow:                @gratis_toolbar-footer-text-shadow;
 
 @subnav-pill-hover-color:                       @global-color;
 @subnav-pill-active-background:                 @global-primary-background;
 @subnav-pill-active-color:                      @global-contrast-color;
+@gratis_subnav-pill-border-radius:              @gratis_global-border-radius;
+@gratis_subnav-pill-active-background:          @gratis_primary-gradient-bottom;
+@gratis_subnav-pill-active-color:               @global-contrast-color;
+@gratis_subnav-pill-box-shadow:                 @gratis_global-box-shadow;
 
 
-// Component
-// ========================================================================
-
-//
-// Items
-//
+/* Component
+ ========================================================================== */
 
 .hook-subnav-item() {}
 
-// Link
 .hook-subnav-link() {}
 
 .hook-subnav-link-hover() {}
 
-// Active
 .hook-subnav-active() {}
 
-// Disabled
 .hook-subnav-disabled() {}
 
 
-// Modifier: `uk-subnav-line'
-// ========================================================================
+/* Modifier: `uk-subnav-line'
+ ========================================================================== */
 
 .hook-subnav-line-divider() {}
 
+/* Sets the styling for the menu dividers */
+.cw-toolbar .uk-subnav-line > li:nth-child(n+2):before,
+.cw-footer .uk-subnav-line > li:nth-child(n+2):before {
+    border-left: 1px solid @gratis_subnav-line-border;
+}
 
-// Modifier: `uk-subnav-pill'
-// ========================================================================
+.cw-footer .uk-subnav-line > li { font-size: @gratis_subnav-line-link-size; }
 
-.hook-subnav-pill() {}
+/* Link styles */
+.cw-toolbar .uk-subnav-line li a,
+.cw-footer .uk-subnav-line li a {
+    color: @gratis_subnav-line-link-color;
+    text-shadow: @gratis_subnav-line-text-shadow;
+    
+    &:hover { color: @gratis_subnav-line-link-hover-color; }
+}
 
-// Hover
-.hook-subnav-pill-hover() {}
+/* Active style */
+.cw-toolbar .uk-subnav-line li.uk-active a,
+.cw-footer .uk-subnav-line li.uk-active a {
+    color: @gratis_subnav-line-link-hover-color;
+}
 
-// Active
-.hook-subnav-pill-active() {}
+
+/* Modifier: `uk-subnav-pill'
+ ========================================================================== */
+
+.hook-subnav-pill() { border-radius: @gratis_subnav-pill-border-radius; }
+
+.hook-subnav-pill-hover() { box-shadow: 0 0 0 1px @gratis_subnav-pill-box-shadow; }
+
+.hook-subnav-pill-active() { 
+    background: @gratis_subnav-pill-active-background;
+    color: @gratis_subnav-pill-active-color;
+    box-shadow: inset 0 2px 4px @gratis_subnav-pill-box-shadow; 
+}
 
 
-// Miscellaneous
-// ========================================================================
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-subnav-misc() {}

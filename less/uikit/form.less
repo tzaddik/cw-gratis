@@ -1,18 +1,25 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Form
-//
-// ========================================================================
+/*
+ * Form component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @form-height:                                   @global-height;
 @form-border:                                   @global-border;
 @form-background:                               @global-background;
 @form-color:                                    @global-color;
+@gratis_form-border-radius:                     @gratis_global-border-radius;
 
 @form-focus-color:                              @global-color;
 
@@ -20,6 +27,8 @@
 @form-disabled-color:                           @global-muted-color;
 
 @form-placeholder-color:                        @global-muted-color;
+@gratis_form-success-color:                     @gratis_global-success-gradient-bottom;
+@gratis_form-danger-color:                      @gratis_global-danger-gradient-bottom; 
 
 @form-gutter:                                   @global-margin;
 
@@ -38,54 +47,84 @@
 @form-icon-color:                               @global-muted-color;
 
 
-// Component
-// ========================================================================
+/* Component
+ ========================================================================== */
 
-.hook-form() {}
+.hook-form() { border-radius: @gratis_form-border-radius; }
 
-// Focus state
+/*
+ * Focus state
+ */
 .hook-form-focus() {}
 
-// Disabled state
+/*
+ * Disabled state
+ */
 .hook-form-disabled() {}
 
-// Legend
+/*
+ * Legend
+ */
 .hook-form-legend() {}
 
 
-// Validation states
-// ========================================================================
+/* Validation states
+ ========================================================================== */
 
-//
-// Error state
-//
+/*
+ * Error state
+ */
 
 .hook-form-danger() {}
 
-//
-// Success state
-//
+.uk-form-danger::-webkit-input-placeholder {
+	color: @gratis_form-danger-color !important;
+}
+
+.uk-form-danger::-moz-placeholder {
+	color: @gratis_form-danger-color !important;
+}
+
+.uk-form-danger:-ms-input-placeholder {
+	color: @gratis_form-danger-color !important;
+}
+
+/*
+ * Success state
+ */
 
 .hook-form-success() {}
 
+.uk-form-success::-webkit-input-placeholder {
+	color: @gratis_form-success-color !important;
+}
 
-// Style modifiers
-// ========================================================================
+.uk-form-success::-moz-placeholder  {
+	color: @gratis_form-success-color !important;
+}
+
+.uk-form-success:-ms-input-placeholder  {
+	color: @gratis_form-success-color !important;
+}
+
+
+/* Style modifiers
+ ========================================================================== */
 
 .hook-form-blank() {}
 
 .hook-form-blank-focus() {}
 
 
-// Sub-object: `uk-form-label`
-// ========================================================================
+/* Sub-object: `uk-form-label`
+ ========================================================================== */
 
 .hook-form-stacked-label() {}
 
 .hook-form-horizontal-label() {}
 
 
-// Miscellaneous
-// ========================================================================
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-form-misc() {}

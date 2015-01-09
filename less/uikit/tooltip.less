@@ -1,27 +1,52 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Tooltip
-//
-// ========================================================================
+/*
+ * Tooltip component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @tooltip-z-index:                               @global-z-index + 30;
 
 @tooltip-font-size:                             round((@global-font-size * 0.85)); // 12px / 14px
 @tooltip-line-height:                           round((@tooltip-font-size * 1.46)); // 18px / 20px
 
+@gratis_tooltip-gradient-top:                   @gratis_primary-gradient-top;
+@gratis_tooltip-gradient-bottom:                @gratis_primary-gradient-bottom;
+@gratis_tooltip-color:                          @global-contrast-color;
+@gratis_tooltip-box-shadow:                     @gratis_global-box-shadow;
+@gratis_tooltip-text-shadow:                    @gratis_global-text-shadow;
+@gratis_tooltip-border-radius:                  @gratis_global-border-radius;
 
-// Component
-// ========================================================================
 
-.hook-tooltip() {}
+/* Component
+ ========================================================================== */
 
+/*
+ * 1. `background-origin` is needed to prevent the background-image gradients from repeating under the border
+ */
 
-// Miscellaneous
-// ========================================================================
+.hook-tooltip() {
+    border-radius: @gratis_tooltip-border-radius;
+    background-image: -webkit-linear-gradient(top, @gratis_tooltip-gradient-top, @gratis_tooltip-gradient-bottom);
+    background-image: linear-gradient(to bottom, @gratis_tooltip-gradient-top, @gratis_tooltip-gradient-bottom);
+    background-color: @gratis_tooltip-gradient-top;
+    background-origin: border-box; /* 1 */
+    color: @gratis_tooltip-color;
+    box-shadow: inset 0 2px 4px @gratis_tooltip-box-shadow;
+    text-shadow: 0 1px 0 @gratis_tooltip-text-shadow;
+}
+
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-tooltip-misc() {}

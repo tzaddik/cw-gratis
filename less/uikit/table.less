@@ -1,27 +1,50 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Table
-//
-// ========================================================================
+/*
+ * Table component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @table-margin-vertical:                         @global-margin;
 
 @table-caption-color:                           @global-muted-color;
 @table-caption-font-size:                       round((@global-font-size * 0.85)); // 12px / 14px
 
+@gratis_table-striped-background:               fade(@gratis-active-color, 80%);
+@gratis_table-striped-color:                    @global-contrast-color;
+@gratis_table-hover-background:                 fade(@gratis-active-color, 10%);
 
-// Component
-// ========================================================================
+
+/* Component
+ ========================================================================== */
 
 .hook-table() {}
 
+/* Modifier: `uk-table-striped`
+ ========================================================================== */
 
-// Miscellaneous
-// ========================================================================
+.uk-table-striped tbody tr:nth-of-type(odd) td { 
+    background: @gratis_table-striped-background;
+    color: @gratis_table-striped-color;
+}
+
+/* Modifier: `uk-table-hover`
+ ========================================================================== */
+
+.uk-table-hover tbody tr:hover td { background: @gratis_table-hover-background; }
+
+
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-table-misc() {}

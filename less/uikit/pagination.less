@@ -1,18 +1,34 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Pagination
-//
-// ========================================================================
+/*
+ * Pagination component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @pagination-line-height:                        @global-line-height;
 @pagination-color:                              @global-color;
 @pagination-hover-color:                        @global-color;
 @pagination-onclick-color:                      @global-color;
+
+@gratis_pagination-border-radius:               @gratis_global-border-radius;
+@gratis_pagination-border:                      @gratis_primary-border;
+@gratis_pagination-border-contrast:             rgba(0,0,0,0.3);
+@gratis_pagination-gradient-top:                @gratis_global-default-gradient-top;
+@gratis_pagination-gradient-bottom:             @gratis_global-default-gradient-bottom;
+@gratis_pagination-box-shadow:                  @gratis_global-box-shadow;
+@gratis_pagination-text-shadow:                 @gratis_global-text-shadow;
+@gratis_pagination-primary-gradient-top:        @gratis_primary-gradient-top;
+@gratis_pagination-primary-gradient-bottom:     @gratis_primary-gradient-bottom;
 
 @pagination-active-background:                  @global-primary-background;
 @pagination-active-color:                       @global-contrast-color;
@@ -20,30 +36,51 @@
 @pagination-disabled-color:                     @global-muted-color;
 
 
-// Component
-// ========================================================================
+/* Component
+ ========================================================================== */
 
-//
-// Items
-//
+/*
+ * 1. `background-origin` is needed to prevent the background-image gradients from repeating under the border
+ */
 
-.hook-pagination-item() {}
-
-// Link
-.hook-pagination-link() {}
-
-.hook-pagination-link-hover() {}
-
-.hook-pagination-link-active() {}
-
-// Active
-.hook-pagination-active() {}
-
-// Disabled
-.hook-pagination-disabled() {}
+.hook-pagination-item() { 
+    border-radius: @gratis_pagination-border-radius; 
+    border: 1px solid @gratis_pagination-border;
+    border-bottom-color: @gratis_pagination-border-contrast;
+    background-origin: border-box; /* 1 */
+    box-shadow: inset 0 2px 4px @gratis_pagination-box-shadow;
+    text-shadow: 0 1px 0 @gratis_pagination-text-shadow;
+}
 
 
-// Miscellaneous
-// ========================================================================
+/* Items
+ ========================================================================== */
+
+
+.hook-pagination-link() {
+    background-image: -webkit-linear-gradient(top, @gratis_pagination-gradient-top, @gratis_pagination-gradient-bottom);
+    background-image: linear-gradient(to bottom, @gratis_pagination-gradient-top, @gratis_pagination-gradient-bottom);
+    background-color: @gratis_pagination-gradient-top;
+}
+
+.hook-pagination-link-hover() { background-image: none; }
+
+.hook-pagination-link-active() { background-image: none; }
+
+
+.hook-pagination-active() {
+    background-image: -webkit-linear-gradient(top, @gratis_pagination-primary-gradient-top, @gratis_pagination-primary-gradient-bottom);
+    background-image: linear-gradient(to bottom, @gratis_pagination-primary-gradient-top, @gratis_pagination-primary-gradient-bottom);
+    background-color: @gratis_pagination-primary-gradient-top
+}
+
+.hook-pagination-disabled() {
+    border: 1px solid @gratis_pagination-border;
+    text-shadow: 0 1px 0 @gratis_pagination-text-shadow;
+}
+
+
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-pagination-misc() {}

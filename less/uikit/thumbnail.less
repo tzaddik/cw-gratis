@@ -1,37 +1,44 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Thumbnail
-//
-// ========================================================================
+/*
+ * Thumbnail component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @thumbnail-border:                              @global-border;
 @thumbnail-background:                          @global-background;
 @thumbnail-hover-border:                        darken(@global-border, 20%);
 @thumbnail-hover-background:                    @global-background;
+@gratis_thumbnail-hover-box-shadow:             @gratis_global-box-shadow;
 
 @thumbnail-caption-color:                       @global-color;
 
 
-// Component
-// ========================================================================
+/* Component
+ ========================================================================== */
 
 .hook-thumbnail() {}
 
-.hook-thumbnail-hover() {}
+.hook-thumbnail-hover() { box-shadow: 0 1px 4px @gratis_thumbnail-hover-box-shadow; }
 
 
-// Caption
-// ========================================================================
+/* Caption
+ ========================================================================== */
 
 .hook-thumbnail-caption() {}
 
 
-// Miscellaneous
-// ========================================================================
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-thumbnail-misc() {}

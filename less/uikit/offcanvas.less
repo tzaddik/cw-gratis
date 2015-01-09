@@ -1,36 +1,51 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Off-canvas
-//
-// ========================================================================
+/*
+ * Offcanvas component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @offcanvas-z-index:                             @global-z-index;
 
+@gratis_offcanvas-bar-background:               #333;
+@gratis_offcanvas-bar-box-shadow:               @gratis_header-footer-box-shadow;
 
-// Component
-// ========================================================================
+@gratis_offcanvas-panel-text-shadow:            rgba(0,0,0,0.5);
+
+/* Component
+ ========================================================================== */
 
 .hook-offcanvas() {}
 
 
-// Sub-object `uk-offcanvas-bar`
-// ========================================================================
+/* Sub-object `uk-offcanvas-bar`
+ ========================================================================== */
 
-.hook-offcanvas-bar() {}
+.hook-offcanvas-bar() {
+    position: relative;
+    background: url("../../images/noise.png") 50% 0 repeat @gratis_offcanvas-bar-background;
+    box-shadow: @gratis_offcanvas-bar-box-shadow;
+    min-height: 100%;
+}
 
 
-// Panel in offcanvas
-// ========================================================================
+/* Panel in offcanvas
+ ========================================================================== */
 
-.hook-offcanvas-panel() {}
+.hook-offcanvas-panel() { text-shadow: 0 1px 0 @gratis_offcanvas-panel-text-shadow; }
 
 
-// Miscellaneous
-// ========================================================================
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-offcanvas-misc() {}

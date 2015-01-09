@@ -1,27 +1,55 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Nav
-//
-// ========================================================================
+/*
+ * Nav component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
+@nav-padding-vertical:                          5px;
+@nav-padding-horizontal:                        15px;
 @nav-header-padding-vertical:                   @nav-padding-vertical;
 @nav-header-padding-horizontal:                 @nav-padding-horizontal;
-@nav-header-font-size:                          round((@global-font-size * 0.85)); // 12px / 14px
+@nav-header-font-size:                          round((@global-font-size * 0.85)); // 12px
 @nav-header-margin-top:                         @global-margin;
+@gratis_nav-header-color:                       #999;
+@gratis_nav-header-font-size:                   @global-font-size;
+@gratis_nav-header-margin-vertical:             2px;
+@gratis_nav-header-margin-horizontal:           15px;
 
 @nav-divider-margin-horizontal:                 @nav-padding-horizontal;
+@gratis_nav-divider-border:                     @gratis_primary-border;
 
-@nav-subtitle-font-size:                        round((@global-font-size * 0.85)); // 12px / 14px
-@nav-subtitle-line-height:                      round((@nav-subtitle-font-size * 1.46)); // 18px / 20px
+@nav-subtitle-font-size:                        round((@global-font-size * 0.85)); // 12px
+@nav-subtitle-line-height:                      round((@nav-subtitle-font-size * 1.5)); // 18px
 
 @nav-sub-padding-left:                          @nav-padding-horizontal;
 
 @nav-parent-icon-width:                         @global-line-height;
+@gratis_nav-parent-icon:			"\f0d9";
+@gratis_nav-parent-open-icon:			"\f0d7";
+@gratis_nav-parent-icon-color:                  @global-link-color;
+@gratis_nav-parent-icon-hover-color:            #fff;
+
+@gratis_nav-bullet-margin:                      1px 0 0 -15px;
+@gratis_nav-bullet:                             "\f10c";
+@gratis_nav-bullet-active:                      "\f111";
+
+@gratis_nav-hover-gradient-top:                 @gratis_primary-gradient-top;
+@gratis_nav-hover-gradient-bottom:              @gratis_primary-gradient-bottom;
+@gratis_nav-hover-box-shadow:                   @gratis_global-box-shadow;
+@gratis_nav-hover-text-shadow:                  @gratis_global-text-shadow;
+@gratis_nav-hover-color:                        @global-contrast-color;
+@gratis_nav-active-color:                       @gratis-active-color;
 
 @nav-side-color:                                @global-color;
 @nav-side-hover-color:                          @global-color;
@@ -31,6 +59,11 @@
 @nav-side-divider-border:                       @global-border;
 @nav-side-nested-color:                         @global-link-color;
 @nav-side-nested-hover-color:                   @global-link-hover-color;
+
+@gratis_nav-side-active-background:             @gratis-active-color;
+@gratis_nav-side-active-color:                  @global-contrast-color;
+@gratis_nav-side-active-box-shadow:             @gratis_global-box-shadow;
+@gratis_nav-side-active-text-shadow:            @gratis_global-text-shadow;
 
 @nav-dropdown-color:                            @global-color;
 @nav-dropdown-hover-background:                 @global-primary-background;
@@ -58,142 +91,296 @@
 @nav-offcanvas-nested-color:                    @offcanvas-panel-link-color;
 @nav-offcanvas-nested-hover-color:              @offcanvas-panel-link-hover-color;
 
+@gratis_nav-offcanvas-border:                   rgba(0,0,0,0.3);
+@gratis_nav-offcanvas-box-shadow:               rgba(255,255,255,0.05);
+@gratis_nav-offcanvas-text-shadow:              rgba(0,0,0,0.5);
+@gratis_nav-offcanvas-active-box-shadow:        rgba(0,0,0,0.3);
+@gratis_nav-offcanvas-divider-background:       rgba(0,0,0,0.2);
+@gratis_nav-offcanvas-divider-height:           4px;
+@gratis_nav-offcanvas-divider-box-shadow:       rgba(0,0,0,0.3);
 
-// Sub-object: `uk-nav-header`
-// ========================================================================
+/* Code blocks for use across all menus
+ ========================================================================== */
 
-.hook-nav-header() {}
+.nav-bullets {
+    font-family: "FontAwesome";
+    font-size: 8px;
+    content: @gratis_nav-bullet;   
+    margin: @gratis_nav-bullet-margin;
+    position: absolute;
+}
+
+.nav-main-hover {
+    background-origin: border-box;
+    background-color: @gratis_nav-hover-gradient-bottom;
+    background-image: -webkit-linear-gradient(top, @gratis_nav-hover-gradient-top, @gratis_nav-hover-gradient-bottom);
+    background-image: linear-gradient(to bottom, @gratis_nav-hover-gradient-top, @gratis_nav-hover-gradient-bottom);
+    box-shadow: inset 0 2px 4px @gratis_nav-hover-box-shadow;
+    color: @gratis_nav-hover-color;
+    text-shadow: 0 -1px 0 @gratis_nav-hover-text-shadow;
+    outline: none;
+}
 
 
-// Sub-object: `uk-nav-divider`
-// ========================================================================
+/* Component
+========================================================================== */
+
+
+/* Sub-object: `uk-nav-header`
+========================================================================== */
+
+.hook-nav-header() {
+    padding: 0;
+    text-transform: none;
+    font-weight: normal;
+    font-size: @global-font-size;
+}
+
+/* Sets the spacing for the first level headers on the main,side and dropdown menus */
+.uk-nav > .uk-nav-header {
+    margin: @gratis_nav-header-margin-vertical @gratis_nav-header-margin-horizontal;
+    padding: 0;
+}
+
+/* Sub-object: `uk-nav-divider`
+========================================================================== */
 
 .hook-nav-divider() {}
 
 
-// Sub-object: `uk-nav-sub`
-// ========================================================================
+/* Sub-object: `uk-nav-sub`
+========================================================================== */
 
-.hook-nav-sub() {}
+.hook-nav-sub() {
+    margin: 0 0 10px 30px;
+    padding: 0;
+}
+
+/* Sets the margin for the subnav menu that is the child of a header */
+.uk-nav-header > .uk-nav-sub {
+    margin-left: 15px;
+}
 
 
-// Modifier: `uk-nav-parent-icon`
-// ========================================================================
+/* Modifier: `uk-nav-parent-icon`
+ ========================================================================== */
+
+/* Sets the green colour for the icon when it hasn't got a background */
+.uk-nav-side .uk-nav-parent-icon > li > a:after {
+    color: @gratis_nav-parent-icon-color;
+}
 
 .hook-nav-parent-icon() {}
 
+/*
+*1* The open icon that displays when hover over a closed sub-menu and not in focus
+*2* The open icon that displays when a menu is open and in focus
+*3* The open icon that displays when a heading is active
+*/
+.uk-nav-parent-icon > .uk-parent:not(.uk-open):not(.uk-active) > a:hover:after, 
+.uk-nav-parent-icon > .uk-parent.uk-open:not(.uk-active) > a:focus:after,
+.uk-nav-parent-icon > .uk-parent.uk-active > a:after {
+    color: @gratis_nav-parent-icon-hover-color;
+    content: @gratis_nav-parent-open-icon;
+}
 
-// Modifier `uk-nav-side`
-// ========================================================================
+/* the open icon that displays when a sub menu is open, but not in focus */
+.uk-nav-parent-icon > .uk-open > a:not(:focus):after {
+    content: @gratis_nav-parent-open-icon;
+}
 
-//
-// Items
-//
+/* 
+*1* the closed icon that displays when a sub menu is open and either in hover or focus 
+*2* the closed icon that displays when the active sub-menu is closed
+*/
+.uk-nav-parent-icon > .uk-parent.uk-open:not(.uk-active) > a:hover:after,
+.uk-nav-parent-icon > .uk-parent.uk-active:not(.uk-open) > a:after {
+    color: @gratis_nav-parent-icon-hover-color;
+    content: @gratis_nav-parent-icon;
+}
+
+/* the closed icon that displays when a sub menu is closed */
+.uk-nav-parent-icon > .uk-parent > a:after {
+    content: @gratis_nav-parent-icon;
+}
+
+
+/* Modifier `uk-nav-side`
+ ========================================================================== */
 
 .hook-nav-side() {}
 
-// Hover
+/* Anchors the bullet points */
+.uk-nav-side .uk-nav-sub a {
+    position: relative;
+    
+    /* Sets the bullet points for the whole sub-menu */
+    &:before { .nav-bullets; }
+}
+
+/* Sets the active colour and boldens text  */
+.uk-nav-side .uk-nav-sub li.uk-active > a {
+    color: @gratis_nav-active-color;
+    font-weight: bold;
+    
+    /* Sets the active bullet point for all active sub-menu links */
+    &:before { font-family: "FontAwesome"; content: @gratis_nav-bullet-active; }
+}
+
+/* Hover */
+
+/* Removes the background from the closed sub-menu header which is still in focus */
+.uk-nav-side > .uk-parent:not(.uk-open) > a:focus:not(:hover) { background: none; }
+
+/* Sets the hover and focus styling for the non-sub-menu items */
+.uk-nav-side > li:not(.uk-active) > a:hover, .uk-nav-side > li.uk-open > a:focus {
+    .nav-main-hover;
+}
+
 .hook-nav-side-hover() {}
 
-// Active
+/* Active */
+.uk-nav-side > li.uk-active > a, .uk-nav-side > li.uk-active > a:hover {
+    background-color: @gratis_nav-side-active-background;
+    color: @gratis_nav-side-active-color;
+    box-shadow: inset 0 2px 4px @gratis_nav-side-active-box-shadow;
+    text-shadow: 0 -1px 0 @gratis_nav-side-active-text-shadow;
+}
+
 .hook-nav-side-active() {}
 
-//
-// Sub-object: `uk-nav-header`
-//
+/* Sub-object: `uk-nav-header` */
 
-.hook-nav-side-header() {}
+.hook-nav-side-header() { color: @gratis_nav-header-color; margin-top: 0; }
 
-//
-// Sub-object: `uk-nav-divider`
-//
+/* Sub-object: `uk-nav-divider` */
 
-.hook-nav-side-divider() {}
+.hook-nav-side-divider() { border-top: 1px solid @gratis_nav-divider-border; }
 
 
-// Modifier `uk-nav-dropdown`
-// ========================================================================
+/* Modifier `uk-nav-dropdown`
+ ========================================================================== */
 
-//
-// Items
-//
+/* Anchors the bullet points */
+.uk-nav-dropdown ul a {
+    position: relative;
+    
+    /* Sets the bullet points for the navbar links */
+    &:before { .nav-bullets; }
+}
+
+/* Sets the active colour and boldens text  */
+.uk-nav-dropdown ul li.uk-active > a {
+    color: @gratis_nav-active-color;
+    font-weight: bold;
+    
+    /* Sets the active bullet point for all active sub-menu links */
+    &:before { font-family: "FontAwesome"; content: @gratis_nav-bullet-active; }
+}
 
 .hook-nav-dropdown() {}
 
-// Hover
-.hook-nav-dropdown-hover() {}
+/* Sets the hover for the first level of the dropdown menu */
+.hook-nav-dropdown-hover() { .nav-main-hover; }
 
-//
-// Sub-object: `uk-nav-header`
-//
+/* Sub-object: `uk-nav-header` */
 
-.hook-nav-dropdown-header() {}
+.hook-nav-side-header() { color: @gratis_nav-header-color; margin-top: 0; }
 
-//
-// Sub-object: `uk-nav-divider`
-//
+/* Sub-object: `uk-nav-divider` */
 
-.hook-nav-dropdown-divider() {}
+.hook-nav-side-divider() { border-top: 1px solid @gratis_nav-divider-border; }
 
 
-// Modifier `uk-nav-navbar`
-// ========================================================================
-
-//
-// Items
-//
+/* Modifier `uk-nav-navbar`
+ ========================================================================== */
 
 .hook-nav-navbar() {}
 
-// Hover
-.hook-nav-navbar-hover() {}
+/* Sets the active colour and boldens text */
+.uk-nav-navbar li.uk-active > a {
+    background: @gratis_nav-side-active-background;
+    color: @gratis_nav-side-active-color;
+}
 
-//
-// Sub-object: `uk-nav-header`
-//
+/* Anchors the bullet points */
+.uk-nav-navbar ul a {
+    position: relative;
+    
+    /* Sets the bullet points for the navbar links */
+    &:before { .nav-bullets; }
+}
 
-.hook-nav-navbar-header() {}
+/* Sets the active colour and boldens text  */
+.uk-nav-navbar ul li.uk-active > a {
+    color: @gratis_nav-active-color;
+    font-weight: bold;
+    
+    /* Sets the active bullet point for all active sub-menu links */
+    &:before { font-family: "FontAwesome"; content: @gratis_nav-bullet-active; }
+}
 
-//
-// Sub-object: `uk-nav-divider`
-//
+/* Sets the hover for the first level of the dropdown menu */
+.hook-nav-navbar-hover() { .nav-main-hover; }
 
-.hook-nav-navbar-divider() {}
+/* Sub-object: `uk-nav-header` */
+
+.hook-nav-side-header() { color: @gratis_nav-header-color; margin-top: 0; }
+
+/* Sub-object: `uk-nav-divider` */
+
+.hook-nav-side-divider() { border-top: 1px solid @gratis_nav-divider-border; }
 
 
-// Modifier `uk-nav-offcanvas`
-// ========================================================================
+/* Modifier `uk-nav-offcanvas`
+ ========================================================================== */
+
+/* Sets a bottom border for the nav menu in the offcanvas */
+.uk-nav-offcanvas {
+    border-bottom: 1px solid @gratis_nav-offcanvas-border;
+    box-shadow: 0 1px 0 @gratis_nav-offcanvas-box-shadow;
+}
+
+/* Sets the bullet points for the sub-menus */
+.uk-nav-offcanvas .uk-nav-sub a:before { .nav-bullets; }
 
 .hook-nav-offcanvas-link() {}
 
 .hook-nav-offcanvas-link-hover() {}
 
-//
-// Items
-//
+.hook-nav-offcanvas() {
+    border-top: 1px solid @gratis_nav-offcanvas-border;
+    box-shadow: inset 0 1px 0 @gratis_nav-offcanvas-box-shadow;
+    text-shadow: 0 1px 0 @gratis_nav-offcanvas-text-shadow;
+}
 
-.hook-nav-offcanvas() {}
-
-// Hover
 .hook-nav-offcanvas-hover() {}
 
-// Active
-.hook-nav-offcanvas-active() {}
+.hook-nav-offcanvas-active() { box-shadow: inset 0 1px 3px @gratis_nav-offcanvas-active-box-shadow; }
 
-//
-// Sub-object: `uk-nav-header`
-//
+/* Sub-object: `uk-nav-header` */
 
-.hook-nav-offcanvas-header() {}
+.hook-nav-offcanvas-header() {
+    margin-top: 0;
+    border-top: 1px solid @gratis_nav-offcanvas-border;
+    box-shadow: inset 0 1px 0 @gratis_nav-offcanvas-box-shadow;
+    text-shadow: 0 1px 0 @gratis_nav-offcanvas-text-shadow;
+}
 
-//
-// Sub-object: `uk-nav-divider`
-//
+/* Override the padding change made to the headers of the other menu systems */ 
+.uk-nav-offcanvas > .uk-nav-header { padding: 10px 15px; }
 
-.hook-nav-offcanvas-divider() {}
+/* Sub-object: `uk-nav-divider` */
+
+.hook-nav-offcanvas-divider() {
+    margin: 0;
+    height: @gratis_nav-offcanvas-divider-height;
+    background: @gratis_nav-offcanvas-divider-background;
+    box-shadow: inset 0 1px 3px @gratis_nav-offcanvas-divider-box-shadow;
+}
 
 
-// Miscellaneous
-// ========================================================================
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-nav-misc() {}

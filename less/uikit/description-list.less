@@ -1,19 +1,98 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Description list
-//
-// ========================================================================
+/*
+ * Description List component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @description-list-line-border:                  @global-border;
 @description-list-line-color:                   @global-muted-color;
+@gratis_description-list-color:                 @gratis-active-color;
+@gratis_description-list-border:                @gratis_primary-border;
 
 
-// Miscellaneous
-// ========================================================================
+dt { color: @gratis_description-list-color;  }
+dd { margin-bottom: @global-margin; }
+
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-description-list-misc() {}
+
+/* Modifier: `uk-description-list-horizontal`
+ ========================================================================== */
+
+/* Only tablets and desktops */
+@media (min-width: @breakpoint-medium) {
+
+    .uk-description-list-horizontal { 
+        padding: 0;
+    }
+
+    .uk-description-list-horizontal > dt {
+        width: 160px;
+        float: left;
+        clear: both;
+        overflow: visible;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 5px 10px 5px 0;
+        position: relative;
+        text-transform: uppercase;
+
+        /* Sets the crossbar for the divider */
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -26px;
+            width: 30px;
+            border-top: 1px solid @gratis_description-list-border; 
+        }
+
+        /* Creates the circle for the divider */
+        &:after {
+            content: "";
+            position:absolute;
+            top: -3px;
+            right: -14px;
+            width: 5px;
+            height: 5px;
+            background: #fff;
+            border: 1px solid @gratis_description-list-border;
+            border-radius:6px;    
+        }
+
+        /* Removes the first divider */
+        &:first-child:before, &:first-child:after { display: none; }
+    }
+
+    .uk-description-list-horizontal > dd { 
+        margin-left: 180px;
+        padding: 5px 0 5px 20px;
+        border-left: 1px solid @gratis_description-list-border;
+    }
+}
+
+/* Modifier: `uk-description-list-line`
+ ========================================================================== */
+
+.uk-description-list-line > dt { color: @description-list-line-color; font-weight: normal; }
+
+.uk-description-list-line > dt:nth-child(n+2) {
+	margin-top: 5px;
+	padding-top: 5px;
+	border-top: 1px solid @gratis_description-list-border;
+}
+
+.uk-description-list-line > dd { color: @gratis_description-list-color; }

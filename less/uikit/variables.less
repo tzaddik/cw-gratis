@@ -1,61 +1,193 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Variables
-//
-// ========================================================================
+/*
+ * Variables component
+ *
+ ========================================================================== */
 
 
-// Global variables
-// ========================================================================
+/* Global Variables
+ ========================================================================== */
 
-//
-// Text
-//
+/*
+ * Gratis theme colours
+ */
 
-@global-color:                                  #444;
+/* Blue */
+
+@gratis-link-color-blue:                            #2382b2;
+@gratis-link-hover-color-blue:                      #57abcc;
+@gratis-active-color-blue:                          #1272a5;
+
+@gratis_header-gradient-top-blue:                   #35acdd;
+@gratis_header-gradient-bottom-blue:                #267fb0;
+
+@gratis_gradient-top-blue:                          #5bc0de;
+@gratis_gradient-bottom-blue:                       #2f96b4;
+
+/* Green */
+
+@gratis-link-color-green:                           #1d953b;
+@gratis-link-hover-color-green:                     #79c36b;
+@gratis-active-color-green:                         #268413;
+
+@gratis_header-gradient-top-green:                  #97c433;
+@gratis_header-gradient-bottom-green:               #699d38;
+
+@gratis_gradient-top-green:                         #62c462;
+@gratis_gradient-bottom-green:                      #51a351;
+
+/* Orange */
+
+@gratis-link-color-orange:                          #dd793b;
+@gratis-link-hover-color-orange:                    #ea9e72;
+@gratis-active-color-orange:                        #d50;
+
+@gratis_header-gradient-top-orange:                 #fcd24f;
+@gratis_header-gradient-bottom-orange:              #f29138;
+
+@gratis_gradient-top-orange:                        #fbb450;
+@gratis_gradient-bottom-orange:                     #f89406;
+
+/* Pink */
+
+@gratis-link-color-pink:                            #e63ad1;
+@gratis-link-hover-color-pink:                      #eb7cdf;
+@gratis-active-color-pink:                          #d825c8;
+
+@gratis_header-gradient-top-pink:                   #e674e5;
+@gratis_header-gradient-bottom-pink:                #d21ed0;
+
+@gratis_gradient-top-pink:                          #f27bea;
+@gratis_gradient-bottom-pink:                       #c843bf;
+
+/* Red */
+
+@gratis-link-color-red:                             #e60c11;
+@gratis-link-hover-color-red:                       #d85863;
+@gratis-active-color-red:                           #b1191c;
+
+@gratis_header-gradient-top-red:                    #f2090f;
+@gratis_header-gradient-bottom-red:                 #a71b1e;
+
+@gratis_gradient-top-red:                           #ee5f5b;
+@gratis_gradient-bottom-red:                        #bd362f;
+
+/* Teal */
+
+@gratis-link-color-teal:                            #008d8b;
+@gratis-link-hover-color-teal:                      #69bcbc;
+@gratis-active-color-teal:                          #006362;
+
+@gratis_header-gradient-top-teal:                   #4fb7b8;
+@gratis_header-gradient-bottom-teal:                #018180;
+
+@gratis_gradient-top-teal:                          #46cbc7;
+@gratis_gradient-bottom-teal:                       #1a9e9a;
+
+/*
+ * Text
+ */
+
+@global-color:                                  #000;
 @global-muted-color:                            #999;
 
-@global-link-color:                             #07D;
-@global-link-hover-color:                       #059;
+@global-link-color:                             @gratis-link-color-green;
+@global-link-hover-color:                       @gratis-link-hover-color-green;
+@gratis-active-color:                           @gratis-active-color-green;
 
 @global-contrast-color:                         #fff;
 
 @global-font-size:                              14px;
 @global-line-height:                            20px;
 
-//
-// Backgrounds & Borders
-//
+@gratis_global-transition:                      background 0.2s ease-out;
+
+/*
+ * Backgrounds & Borders
+ */
 
 @global-background:                             #fff;
 @global-border:                                 #ddd;
+@gratis_primary-border:                         fade(@gratis-active-color, 20%);
+
+@gratis_global-border-radius:                   4px;
 
 @global-primary-background:                     #00a8e6;
 @global-success-background:                     #8cc14c;
 @global-warning-background:                     #faa732;
 @global-danger-background:                      #da314b;
 
-//
-// Spacings
-//
+/*
+ * Gradients
+ */
+
+@gratis_header-gradient-top:                    @gratis_header-gradient-top-green;
+@gratis_header-gradient-bottom:                 @gratis_header-gradient-bottom-green;
+
+@gratis_primary-gradient-top:                   @gratis_gradient-top-green;
+@gratis_primary-gradient-bottom:                @gratis_gradient-bottom-green;
+
+@gratis_global-default-gradient-top:		#fff;
+@gratis_global-default-gradient-bottom:		#e6e6e6;
+
+@gratis_global-success-gradient-top:		#9fd256;
+@gratis_global-success-gradient-bottom:		#6fac34;
+
+@gratis_global-warning-gradient-top:		#fbb450;
+@gratis_global-warning-gradient-bottom:		#f89406;
+
+@gratis_global-danger-gradient-top:		#ee465a;
+@gratis_global-danger-gradient-bottom:		#c11a39;
+
+/*
+ * Shadows
+ */
+
+@gratis_global-box-shadow:                      rgba(0,0,0,0.2);
+@gratis_global-text-shadow:			rgba(0,0,0,0.2);
+@gratis_global-primary-box-shadow:              0 -1px 8px rgba(0, 0, 0, 0.3) inset, 0 1px 8px rgba(0, 0, 0, 0.5) inset;
+
+/*
+ * Spacings
+ */
 
 @global-margin:                                 15px;
 @global-margin-large:                           25px;
 @global-grid-gutter:                            25px;
 @global-grid-gutter-large:                      35px;
+@gratis_global-margin:                          25px;
 
-//
-// Controls
-//
+/*
+ * Controls
+ */
 
 @global-height:                                 30px;
 @global-height-mini:                            20px;
 @global-height-small:                           25px;
 @global-height-large:                           40px;
 
-//
-// Z-index
-//
+/*
+ * Z-index
+ */
 
 @global-z-index:                                1000;
+
+/* Header and Footer
+ ========================================================================== */
+
+@gratis_toolbar-border:                         1px solid #b2b2b2;
+@gratis_toolbar-footer-background:              #7e8689;
+@gratis_toolbar-footer-text-color:              #efefef;
+@gratis_toolbar-footer-text-shadow:             0 1px 0 rgba(0, 0, 0, 0.2);
+@gratis_toolbar-footer-link-color:              #efefef;
+@gratis_toolbar-footer-link-hover-color:        @gratis_header-gradient-top;
+@gratis_toolbar-footer-link-text-shadow:        0 1px 0 rgba(0, 0, 0, 0.3);
+
+@gratis_header-footer-box-shadow:               0 -1px 8px rgba(0, 0, 0, 0.3) inset, 0 1px 8px rgba(0, 0, 0, 0.5) inset;

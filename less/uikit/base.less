@@ -1,18 +1,30 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Base
-//
-// ========================================================================
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:400,300';
+
+/*
+ * Base component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @base-body-background:                          @global-background;
 @base-body-font-size:                           @global-font-size;
 @base-body-line-height:                         @global-line-height;
 @base-body-color:                               @global-color;
+
+@base-body-font-family:                         'Open Sans',"Helvetica Neue", Helvetica, Arial, sans-serif;
+@base-heading-font-family:                      'Open Sans',"Helvetica Neue", Helvetica, Arial, sans-serif;
+@base-heading-font-weight:                      300;
 
 @base-link-color:                               @global-link-color;
 @base-link-hover-color:                         @global-link-hover-color;
@@ -23,50 +35,121 @@
 
 @base-heading-color:                            @global-color;
 @base-heading-margin-top:                       @global-margin-large;
-@base-h1-font-size:                             round((@global-font-size * 2.6)); // 36px / 42px
-@base-h1-line-height:                           round((@base-h1-font-size * 1.154)); // 42px / 48px
-@base-h2-font-size:                             round((@global-font-size * 1.74)); // 24px / 28px
-@base-h2-line-height:                           round((@base-h2-font-size * 1.27)); // 30px / 36px
-@base-h3-font-size:                             round((@global-font-size * 1.28)); // 18px / 20px
-@base-h3-line-height:                           round((@base-h3-font-size * 1.32)); // 24px / 26px
-@base-h4-font-size:                             round((@global-font-size * 1.14)); // 16px / 18px
-@base-h4-line-height:                           round((@base-h4-font-size * 1.36)); // 22px / 24px
-@base-h5-font-size:                             @global-font-size; // 14px / 16px
-@base-h5-line-height:                           @global-line-height; // 20px / 22px
-@base-h6-font-size:                             round((@global-font-size * 0.85)); // 12px / 14px
-@base-h6-line-height:                           round((@base-h6-font-size * 1.46)); // 18px / 20px
+@base-h1-font-size:                             round((@global-font-size * 2.85)); // 40px
+@base-h1-line-height:                           round((@base-h1-font-size * 1.25)); // 50px
+@base-h2-font-size:                             round((@global-font-size * 2.28)); // 32px
+@base-h2-line-height:                           round((@base-h2-font-size * 1.25)); // 40px
+@base-h3-font-size:                             round((@global-font-size * 1.71)); // 24px
+@base-h3-line-height:                           round((@base-h3-font-size * 1.25)); // 30px
+@base-h4-font-size:                             round((@global-font-size * 1.28)); // 18px
+@base-h4-line-height:                           round((@base-h4-font-size * 1.33)); // 24px
+@base-h5-font-size:                             @global-font-size; // 14px
+@base-h5-line-height:                           @global-line-height; // 20px
+@base-h6-font-size:                             round((@global-font-size * 0.85)); // 12px
+@base-h6-line-height:                           round((@base-h6-font-size * 1.5)); // 18px
 
 @base-hr-border:                                @global-border;
 
 @base-blockquote-border:                        @global-border;
 @base-blockquote-small-color:                   @global-muted-color;
-@base-blockquote-font-size:                     round((@global-font-size * 1.14)); // 16px / 18px
-@base-blockquote-line-height:                   round((@base-blockquote-font-size * 1.36)); // 22px / 24px
+@base-blockquote-font-size:                     round((@global-font-size * 1.14)); // 16px
+@base-blockquote-line-height:                   round((@base-blockquote-font-size * 1.37)); // 22px
 
-@base-code-font-size:                           round((@global-font-size * 0.85)); // 12px / 14px
+@base-code-font-size:                           round((@global-font-size * 0.85)); // 12px
 
 @base-pre-color:                                @global-color;
-@base-pre-font-size:                            round((@global-font-size * 0.85)); // 12px / 14px
-@base-pre-line-height:                          round((@base-pre-font-size * 1.46)); // 18px / 20px
+@base-pre-font-size:                            round((@global-font-size * 0.85)); // 12px
+@base-pre-line-height:                          round((@base-pre-font-size * 1.5)); // 18px
+@gratis_base-pre-border:                        @gratis_primary-border;
+
+@gratis_base-selection-background:              @global-link-hover-color;
+@gratis_base-selection-color:                   @global-contrast-color;
 
 
-// Body
-// ========================================================================
+/* Body
+ ========================================================================== */
 
-.hook-base-body() {}
+.hook-base-body() { 
+    padding: 15px;
+    box-shadow: @gratis_header-footer-box-shadow;
+}
 
+.wrapper { margin: 20px; }
 
-// Code and preformatted text
-// ========================================================================
+h1, h2, h3, h4, h5, h6 { color: @gratis_header-gradient-bottom; }
+
+/* Code and preformatted text
+ ========================================================================== */
 
 .hook-base-code() {}
 
 .hook-base-code-reset() {}
 
-.hook-base-pre() {}
+.hook-base-pre() {
+    border: 1px solid @gratis_base-pre-border;
+    border-radius: 3px;
+}
 
+/* Miscellaneous
+ ========================================================================== */
 
-// Miscellaneous
-// ========================================================================
+.hook-base-misc() {
+    /*
+     * Selection highlight
+     */
 
-.hook-base-misc() {}
+    ::-moz-selection {
+        background: @gratis_base-selection-background;
+        color: @gratis_base-selection-color;
+        text-shadow: none;
+    }
+
+    ::selection {
+        background: @gratis_base-selection-background;
+        color: @gratis_base-selection-color;
+        text-shadow: none;
+    }
+}
+
+/* Links
+ ======================================================================== */
+
+a, em, code { 
+    color: @global-link-color;   
+}
+
+a:hover {
+    color: @global-link-hover-color;
+    text-decoration: none;
+    transition: color 0.2s ease-out;
+}
+
+/* Quotes
+ ========================================================================== */
+
+blockquote {
+    border-left: none;
+    color: @gratis-active-color;
+    font-size: 18px;
+    line-height: 26px;
+    padding-left: 25px;
+    padding-right: 25px;
+    position: relative;
+    text-align: center;
+}
+
+blockquote:before {
+    content: "\f10d";
+    font-family: "FontAwesome";
+    left: 0;
+    position: absolute;
+}
+
+blockquote:after {
+    bottom: 0;
+    content: "\f10e";
+    font-family: "FontAwesome";
+    height: 12px;
+    position: absolute;
+    right: 10px;
+}

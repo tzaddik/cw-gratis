@@ -1,30 +1,39 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: List
-//
-// ========================================================================
+/*
+ * List component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @list-line-border:                              @global-border;
+@gratis_list-striped-border:                    @gratis_primary-border;
 
 
-// Modifier: `list-line`
-// ========================================================================
+/* Modifier: `list-line`
+ ========================================================================== */
 
 .hook-list-line() {}
 
 
-// Modifier: `list-striped`
-// ========================================================================
+/* Modifier: `list-striped`
+ ========================================================================== */
 
-.hook-list-striped() {}
+.hook-list-striped() { border-bottom: 1px solid @gratis_list-striped-border; }
+
+.uk-list-striped > li:first-child { border-top: 1px solid @gratis_list-striped-border; }
 
 
-// Miscellaneous
-// ========================================================================
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-list-misc() {}

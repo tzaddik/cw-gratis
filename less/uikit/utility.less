@@ -1,16 +1,23 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Utility
-//
-// ========================================================================
+/*
+ * Utility component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @utility-container-padding-horizontal:          @global-grid-gutter;
 @utility-container-large-padding-horizontal:    @global-grid-gutter-large;
+@gratis_utility-container-background:           #fff;
 
 @utility-align-horizontal:                      @global-margin;
 @utility-align-vertical:                        @global-margin;
@@ -26,19 +33,36 @@
 @utility-scrollable-box-border:                 @global-border;
 
 
-// Container
-// ========================================================================
+/* Container
+ ========================================================================== */
 
-.hook-container() {}
+.hook-container() {
+    background: @gratis_utility-container-background;
+    box-shadow: 0 0 10px @gratis_global-box-shadow;
+    margin: 25px auto;
+    padding: 0;
+    border-radius: 5px @gratis_global-border-radius;
+}
+
+/* Only large screens */
+@media (min-width: @breakpoint-xlarge) {
+
+    .uk-container {
+        max-width: @utility-container-large-max-width;
+        margin: 35px auto;
+        padding: 0;
+    }
+
+}
 
 
-// Scrollable
-// ========================================================================
+/* Scrollable
+ ========================================================================== */
 
 .hook-scrollable-box() {}
 
 
-// Miscellaneous
-// ========================================================================
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-utility-misc() {}

@@ -1,48 +1,85 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Progress
-//
-// ========================================================================
+/*
+ * Progress component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @progress-margin-vertical:                      @global-margin;
 
 @progress-bar-background:                       @global-primary-background;
 @progress-bar-font-size:                        round((@global-font-size * 0.85)); // 12px / 14px
 @progress-bar-color:                            @global-contrast-color;
+@gratis_progress-bar-box-shadow:                @gratis_global-box-shadow;
+@gratis_progress-bar-text-shadow:               @gratis_global-text-shadow;
+@gratis_progress-bar-border-radius:             @gratis_global-border-radius;
+
+@gratis_progress-bar-primary-gradient-top:      @gratis_primary-gradient-top;
+@gratis_progress-bar-primary-gradient-bottom:   @gratis_primary-gradient-bottom;
+@gratis_progress-bar-success-gradient-top:      @gratis_global-success-gradient-top;
+@gratis_progress-bar-success-gradient-bottom:   @gratis_global-success-gradient-bottom;
+@gratis_progress-bar-warning-gradient-top:      @gratis_global-warning-gradient-top;
+@gratis_progress-bar-warning-gradient-bottom:   @gratis_global-warning-gradient-bottom;
+@gratis_progress-bar-danger-gradient-top:       @gratis_global-danger-gradient-top;
+@gratis_progress-bar-danger-gradient-bottom:    @gratis_global-danger-gradient-bottom;
 
 @progress-bar-success-background:               @global-success-background;
 @progress-bar-warning-background:               @global-warning-background;
 @progress-bar-danger-background:                @global-danger-background;
 
 
-// Component
-// ========================================================================
+/* Component
+ ========================================================================== */
 
-.hook-progress() {}
+.hook-progress() {
+    box-shadow: inset 0 0 0 1px @gratis_progress-bar-box-shadow;
+    border-radius: @gratis_progress-bar-border-radius;
+}
+
+/* Sub-object: `progress-bar`
+ ========================================================================== */
+
+.hook-progress-bar() {
+    background-image: -webkit-linear-gradient(top, @gratis_progress-bar-primary-gradient-top, @gratis_progress-bar-primary-gradient-bottom);
+    background-image: linear-gradient(to bottom, @gratis_progress-bar-primary-gradient-top, @gratis_progress-bar-primary-gradient-bottom);
+    background-color: @gratis_progress-bar-primary-gradient-top;
+    box-shadow: inset 0 -1px 0 @gratis_progress-bar-box-shadow;
+    text-shadow: 0 -1px 0 @gratis_progress-bar-text-shadow;
+}
+
+/* Color modifiers
+ ========================================================================== */
+
+.hook-progress-bar-success() {
+    background-image: -webkit-linear-gradient(top, @gratis_progress-bar-success-gradient-top, @gratis_progress-bar-success-gradient-bottom);
+    background-image: linear-gradient(to bottom, @gratis_progress-bar-success-gradient-top, @gratis_progress-bar-success-gradient-bottom);
+    background-color: @gratis_progress-bar-success-gradient-top;
+}
+
+.hook-progress-bar-warning() {
+    background-image: -webkit-linear-gradient(top, @gratis_progress-bar-warning-gradient-top, @gratis_progress-bar-warning-gradient-bottom);
+    background-image: linear-gradient(to bottom, @gratis_progress-bar-warning-gradient-top, @gratis_progress-bar-warning-gradient-bottom);
+    background-color: @gratis_progress-bar-warning-gradient-top;
+}
+
+.hook-progress-bar-danger() {
+    background-image: -webkit-linear-gradient(top, @gratis_progress-bar-danger-gradient-top, @gratis_progress-bar-danger-gradient-bottom);
+    background-image: linear-gradient(to bottom, @gratis_progress-bar-danger-gradient-top, @gratis_progress-bar-danger-gradient-bottom);
+    background-color: @gratis_progress-bar-danger-gradient-top;
+}
 
 
-// Sub-object: `progress-bar`
-// ========================================================================
-
-.hook-progress-bar() {}
-
-
-// Color modifiers
-// ========================================================================
-
-.hook-progress-bar-success() {}
-
-.hook-progress-bar-warning() {}
-
-.hook-progress-bar-danger() {}
-
-
-// Miscellaneous
-// ========================================================================
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-progress-misc() {}

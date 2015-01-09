@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE install PUBLIC "-//Joomla! 1.7//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.7/template-install.dtd">
 <extension version="2.5" type="template" client="site" method="upgrade">
-	<name>yoo_master2</name>
-	<version>1.0.0</version>
-	<creationDate>March 2014</creationDate>
-	<author>YOOtheme</author>
-	<authorEmail>info@yootheme.com</authorEmail>
-	<authorUrl>http://www.yootheme.com</authorUrl>
-    <copyright>Copyright (C) YOOtheme GmbH</copyright>
+	<name>cw_gratis_w7</name>
+	<version>0.0.1</version>
+	<creationDate>January 2015</creationDate>
+	<author>Steven Palmer and Bradley Silk</author>
+	<authorEmail>support@coalaweb.com</authorEmail>
+	<authorUrl>http://www.coalaweb.com</authorUrl>
+    <copyright>Copyright (C) Coalaweb</copyright>
     <license>http://www.gnu.org/licenses/gpl.html GNU/GPL</license>
-	<description>Master theme of the YOOtheme club. It is based on YOOtheme's Warp theme framework.</description>
+	<description>Gratis Theme by Coalaweb. It is based on YOOtheme's Warp theme framework.</description>
 	<files>
 		<filename>checksums</filename>
 		<filename>apple_touch_icon.png</filename>
@@ -56,7 +56,7 @@
         <position settings="">debug</position>
     </positions>
 	<config>
-		<fields name="params" addfieldpath="/templates/yoo_master2/warp/systems/joomla/config/elements">
+		<fields name="params" addfieldpath="/templates/cw_gratis_w7/warp/systems/joomla/config/elements">
 			<fieldset name="options">
 		    	<field name="config" type="config" label="Config" description="" default="" />
 			</fieldset>

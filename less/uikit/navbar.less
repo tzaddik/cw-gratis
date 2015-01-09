@@ -1,17 +1,31 @@
-// Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
+/**
+ * @author              Steven Palmer and Bradley Silk
+ * @author url          http://coalaweb.com
+ * @author email        support@coalaweb.com
+ * @version             Version 0.0.1 January 2015
+ * @copyright           Copyright (c) 2015 Steven Palmer and Bradley Silk All rights reserved.
+ */
 
-//
-// Component: Navbar
-//
-// ========================================================================
+/*
+ * Navbar component
+ *
+ ========================================================================== */
 
 
-// Variables
-// ========================================================================
+/* Variables
+ ========================================================================== */
 
 @navbar-color:                                  @global-color;
 @navbar-link-color:                             @global-link-color;
 @navbar-link-hover-color:                       @global-link-hover-color;
+
+@gratis_navbar-border:                          rgba(0,0,0,0.1);
+@gratis_navbar-border-bottom:                   rgba(0,0,0,0.3);
+@gratis_navbar-border-radius:                   @gratis_global-border-radius;
+@gratis_navbar-hover-box-shadow:                0 -1px 8px rgba(0, 0, 0, 0.3) inset;
+@gratis_navbar-active-box-shadow:               0 -1px 8px rgba(0, 0, 0, 0.3) inset, 0 1px 8px rgba(0, 0, 0, 0.5) inset;
+@gratis_navbar-gradient-top:                    @gratis_global-default-gradient-top;
+@gratis_navbar-gradient-bottom:                 @gratis_global-default-gradient-bottom;
 
 @navbar-nav-line-height:                        @navbar-nav-height;
 @navbar-nav-color:                              @global-color;
@@ -20,43 +34,111 @@
 @navbar-nav-onclick-color:                      @global-color;
 @navbar-nav-active-color:                       @global-color;
 
-@navbar-brand-font-size:                        round((@global-font-size * 1.28)); // 18px / 20px
+@gratis_navbar-nav-text-shadow:                 @gratis_global-text-shadow;
+@gratis_navbar-nav-height:                      45px;
+@gratis_navbar-nav-hover-background:            transparent;
+@gratis_navbar-nav-hover-border:                @global-border;
+@gratis_navbar-nav-hover-border-top:            rgba(0,0,0,0.2);
+@gratis_navbar-nav-hover-box-shadow:            rgba(0,0,0,0.1);
+@gratis_navbar-nav-active-background:           #fafafa;
+
+@gratis_navbar-text-shadow:                     @gratis_global-text-shadow;
+
+@navbar-brand-font-size:                        round((@global-font-size * 1.28)); // 18px
 @navbar-brand-color:                            @global-color;
 @navbar-brand-hover-color:                      @global-color;
 
-@navbar-toggle-font-size:                       round((@global-font-size * 1.28)); // 18px / 20px
+@navbar-toggle-font-size:                       round((@global-font-size * 1.28)); // 18px
 @navbar-toggle-color:                           @global-color;
 @navbar-toggle-hover-color:                     @global-color;
 
 
-// Component
-// ========================================================================
+/* Component
+ ========================================================================== */
 
-.hook-navbar() {}
+/*
+ * 1. `background-origin` is needed to prevent the background-image gradients from repeating under the border
+ */
+
+.hook-navbar() {
+    border: 1px solid @gratis_navbar-border;
+    border-bottom-color: @gratis_navbar-border-bottom;
+    background-origin: border-box; /* 1 */
+    background-image: -webkit-linear-gradient(top, @gratis_navbar-gradient-top, @gratis_navbar-gradient-bottom);
+    background-image: linear-gradient(to bottom, @gratis_navbar-gradient-top, @gratis_navbar-gradient-bottom);
+    background-color: @gratis_navbar-gradient-bottom;
+}
+
+.uk-navbar:not(.uk-navbar-attached) { border-radius: @gratis_navbar-border-radius; }
 
 
-// Sub-object: `uk-navbar-nav`
-// ========================================================================
+/* Sub-object: `uk-navbar-nav`
+ ========================================================================== */
 
 .hook-navbar-nav() {}
 
-// Hover
-.hook-navbar-nav-hover() {}
+/*
+ * Apply same `border-radius` as `uk-navbar`
+ */
 
-// OnClick
-.hook-navbar-nav-onclick() {}
+.uk-navbar:not(.uk-navbar-attached) .uk-navbar-nav:first-child > li:first-child > a {
+    border-top-left-radius: @gratis_global-border-radius;
+    border-bottom-left-radius: @gratis_global-border-radius;
+}
 
-// Active
-.hook-navbar-nav-active() {}
+/*
+ * Sub-modifier `uk-navbar-flip`
+ */
+
+/* Collapse border */
+.uk-navbar .uk-navbar-flip .uk-navbar-nav > li > a {
+    margin-left: 0;
+    margin-right: -1px;
+}
+
+/* Apply same `border-radius` as `uk-navbar` */
+.uk-navbar .uk-navbar-flip .uk-navbar-nav:first-child > li:first-child > a {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.uk-navbar:not(.uk-navbar-attached) .uk-navbar-nav:last-child > li:last-child > a {
+    border-top-right-radius: @gratis_global-border-radius;
+    border-bottom-right-radius: @gratis_global-border-radius;
+}
+
+/*
+ * Needed for hover
+ * 1. Create position context to superimpose the successor elements border
+ * 2. Needed because the `li` elements already have a position context
+ */
+
+.hook-navbar-nav-hover() {
+    position: relative; /* 1 */
+    z-index: 1; /* 2 */
+    background-color: @gratis_navbar-nav-hover-background;
+    transition: @gratis_global-transition;
+    box-shadow: @gratis_navbar-hover-box-shadow;
+}
+ 
+.hook-navbar-nav-onclick() { 
+    background-color: @gratis_navbar-nav-hover-background;
+    box-shadow: @gratis_navbar-hover-box-shadow;
+}
+
+.hook-navbar-nav-active() { 
+    background-color: @gratis_navbar-nav-active-background;
+    box-shadow: @gratis_navbar-active-box-shadow; 
+}
 
 
-// Sub-object: `uk-navbar-content`
-// ========================================================================
+/* Sub-object: `uk-navbar-content`
+ ========================================================================== */
 
-.hook-navbar-content() {}
+.hook-navbar-content() { height: auto; text-shadow: 0 1px 0 @gratis_navbar-text-shadow; }
 
 
-// Miscellaneous
-// ========================================================================
+/* Miscellaneous
+ ========================================================================== */
 
 .hook-navbar-misc() {}
